@@ -12,6 +12,16 @@ export default function decorate(block) {
           // picture is only content in column
           picWrapper.classList.add('columns-img-col');
         }
+      } else {
+        // check for img without picture wrapper (e.g. external images)
+        const img = col.querySelector('img');
+        if (img) {
+          const firstEl = col.firstElementChild;
+          const onlyChild = col.children.length === 1 && firstEl.children.length === 1;
+          if (onlyChild) {
+            col.classList.add('columns-img-col');
+          }
+        }
       }
     });
   });

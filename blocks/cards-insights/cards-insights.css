@@ -1,0 +1,145 @@
+/* Block: cards-insights -- Insight leadership cards */
+
+.cards-insights > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (width >= 600px) {
+  .cards-insights > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .cards-insights > ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.cards-insights > ul > li {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+  border-radius: 6px;
+  box-shadow: rgb(0 0 0 / 6%) 0 1px 4px 0;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+
+.cards-insights > ul > li:hover {
+  box-shadow: rgb(0 0 0 / 12%) 0 4px 12px 0;
+}
+
+/* Image section */
+.cards-insights .cards-insights-card-image {
+  position: relative;
+  overflow: hidden;
+  height: 210px;
+  line-height: 0;
+}
+
+.cards-insights .cards-insights-card-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgb(0 0 0 / 0%) 45%, rgb(0 0 0 / 72%) 100%);
+  pointer-events: none;
+}
+
+.cards-insights .cards-insights-card-image p {
+  margin: 0;
+  height: 100%;
+}
+
+.cards-insights .cards-insights-card-image picture {
+  display: block;
+  height: 100%;
+}
+
+.cards-insights .cards-insights-card-image img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Card body */
+.cards-insights .cards-insights-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px;
+  flex: 1;
+}
+
+/* First paragraph: Type badge (Podcast/Article) */
+.cards-insights .cards-insights-card-body > p:first-child {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  border: 1px solid rgb(0 0 0 / 8%);
+  padding: 5px 12px;
+  border-radius: 100px;
+  display: inline-block;
+  align-self: flex-start;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Second paragraph: Person name + role */
+.cards-insights .cards-insights-card-body > p:nth-child(2) {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--color-muted);
+  line-height: 15.4px;
+  margin: 4px 0 0;
+}
+
+.cards-insights .cards-insights-card-body > p:nth-child(2) strong {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-color);
+  display: block;
+  line-height: 22.5px;
+}
+
+/* Third paragraph: Category (em) */
+.cards-insights .cards-insights-card-body > p:nth-child(3) {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgb(0 196 248);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 6px 0 0;
+  line-height: 1.5;
+}
+
+.cards-insights .cards-insights-card-body > p:nth-child(3) em {
+  font-style: normal;
+}
+
+/* Headline (h4) */
+.cards-insights .cards-insights-card-body h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-color);
+  line-height: 21px;
+  margin: 2px 0 0;
+  letter-spacing: normal;
+}
+
+/* Last paragraph: Excerpt/description */
+.cards-insights .cards-insights-card-body > p:last-child {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-muted);
+  line-height: 19.8px;
+  margin: 0;
+}

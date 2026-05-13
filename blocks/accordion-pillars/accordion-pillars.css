@@ -1,0 +1,150 @@
+/* Block: accordion-pillars
+ * Horizontal pillar grid with hover reveal animation
+ * Source: section.know-sei .know-sei-grid
+ * Extracted values: border rgb(229, 231, 235), bg rgb(249, 250, 251),
+ *   active bg rgb(255, 162, 2), padding 40px 32px, min-height 340px,
+ *   title 22px/600, body 16px/1.7 centered
+ */
+
+/* Grid container */
+.accordion-pillars {
+  display: grid;
+  grid-template-columns: 1fr;
+  border: 1px solid rgb(229 231 235);
+  margin-top: 48px;
+}
+
+/* Individual pillar item */
+.accordion-pillars .accordion-pillars-item {
+  background: var(--color-grey);
+  border-bottom: 1px solid rgb(229 231 235);
+  min-height: 280px;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.accordion-pillars .accordion-pillars-item:last-child {
+  border-bottom: none;
+}
+
+/* Orange reveal fill using ::before pseudo-element */
+.accordion-pillars .accordion-pillars-item::before {
+  content: "";
+  z-index: 0;
+  transform-origin: center bottom;
+  background: rgb(255 162 2);
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute;
+  inset: 0;
+  transform: scaleY(0);
+}
+
+.accordion-pillars .accordion-pillars-item:hover::before {
+  transform: scaleY(1);
+}
+
+/* Summary / Title label */
+.accordion-pillars .accordion-pillars-item-label {
+  z-index: 1;
+  position: relative;
+  padding: 0;
+  cursor: pointer;
+  list-style: none;
+  transition: opacity 0.3s, transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-pillars .accordion-pillars-item-label::-webkit-details-marker {
+  display: none;
+}
+
+/* Remove the chevron arrow */
+.accordion-pillars .accordion-pillars-item-label::after {
+  display: none;
+}
+
+.accordion-pillars .accordion-pillars-item-label p {
+  font-size: 22px;
+  font-weight: 600;
+  font-family: var(--heading-font-family);
+  line-height: 1.3;
+  color: var(--text-color);
+  margin: 0;
+}
+
+/* On hover: fade out and move title up */
+.accordion-pillars .accordion-pillars-item:hover .accordion-pillars-item-label {
+  opacity: 0;
+  transform: translateY(-14px);
+}
+
+/* Body / reveal panel - always rendered but hidden below via transform */
+.accordion-pillars .accordion-pillars-item-body {
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
+  position: absolute;
+  inset: 0;
+  transform: translateY(100%);
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  border-top: none;
+  background: none;
+}
+
+/* On hover: slide body up into view */
+.accordion-pillars .accordion-pillars-item:hover .accordion-pillars-item-body {
+  transform: translateY(0);
+}
+
+/* Body text */
+.accordion-pillars .accordion-pillars-item-body p {
+  color: var(--text-color);
+  text-align: center;
+  font-size: 16px;
+  font-family: var(--body-font-family);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Desktop: 4-column horizontal grid */
+@media (width >= 900px) {
+  .accordion-pillars {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .accordion-pillars .accordion-pillars-item {
+    border-bottom: none;
+    border-right: 1px solid rgb(229 231 235);
+    min-height: 340px;
+  }
+
+  .accordion-pillars .accordion-pillars-item:last-child {
+    border-right: none;
+  }
+}
+
+/* Tablet: 2-column grid */
+@media (width >= 600px) and (width < 900px) {
+  .accordion-pillars {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .accordion-pillars .accordion-pillars-item {
+    border-bottom: 1px solid rgb(229 231 235);
+    min-height: 280px;
+  }
+
+  .accordion-pillars .accordion-pillars-item:nth-child(odd) {
+    border-right: 1px solid rgb(229 231 235);
+  }
+
+  .accordion-pillars .accordion-pillars-item:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+}

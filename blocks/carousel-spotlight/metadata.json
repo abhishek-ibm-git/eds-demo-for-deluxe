@@ -1,0 +1,39 @@
+{
+  "variantName": "carousel-spotlight",
+  "baseBlock": "carousel",
+  "version": "1.0.0",
+  "created": "2026-05-13T13:16:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://sei-demo-nextjs.vercel.app/",
+    "originPage": "homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "spotlight",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image + play-button + label per slide",
+    "buttonCount": 0,
+    "imageCount": 3
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "video spotlight carousels",
+      "executive or leadership feature sections",
+      "media gallery carousels with thumbnails"
+    ],
+    "notSuitableFor": [
+      "product image galleries",
+      "text-heavy content sliders",
+      "single-image hero carousels"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-05-13T13:16:00.000Z"
+  }
+}

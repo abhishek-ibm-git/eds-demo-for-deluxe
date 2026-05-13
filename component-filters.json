@@ -28,15 +28,39 @@
     ]
   },
   {
+    "id": "accordion-pillars",
+    "components": [
+      "accordion-pillars-item"
+    ]
+  },
+  {
     "id": "accordion",
     "components": [
       "accordion-item"
     ]
   },
   {
+    "id": "cards-insights",
+    "components": [
+      "card"
+    ]
+  },
+  {
+    "id": "cards-stats",
+    "components": [
+      "card"
+    ]
+  },
+  {
     "id": "cards",
     "components": [
       "card"
+    ]
+  },
+  {
+    "id": "carousel-spotlight",
+    "components": [
+      "carousel-spotlight-item"
     ]
   },
   {
@@ -82,6 +106,12 @@
     "id": "table-4-columns",
     "components": [
       "table-col-4"
+    ]
+  },
+  {
+    "id": "tabs-casestudy",
+    "components": [
+      "tabs-casestudy-item"
     ]
   },
   {

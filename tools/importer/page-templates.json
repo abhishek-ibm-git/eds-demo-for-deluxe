@@ -1,0 +1,155 @@
+{
+  "metadata": {
+    "projectType": "xwalk"
+  },
+  "templates": [
+    {
+      "name": "homepage",
+      "urls": [
+        "https://sei-demo-nextjs.vercel.app/"
+      ],
+      "description": "SEI Demo homepage with hero, content sections, and call-to-action areas",
+      "blocks": [
+        {
+          "name": "hero-video",
+          "instances": [
+            "section.hero"
+          ]
+        },
+        {
+          "name": "carousel-spotlight",
+          "instances": [
+            "section.spotlight .spotlight-carousel-outer"
+          ]
+        },
+        {
+          "name": "accordion-pillars",
+          "instances": [
+            "section.know-sei .know-sei-grid"
+          ]
+        },
+        {
+          "name": "tabs-casestudy",
+          "instances": [
+            "section.trusted .trusted-tabs",
+            "section.trusted .trusted-panel"
+          ]
+        },
+        {
+          "name": "cards-stats",
+          "instances": [
+            "section.by-numbers .by-numbers-grid"
+          ]
+        },
+        {
+          "name": "cards-insights",
+          "instances": [
+            "section.insights-bd .insights-bd-grid"
+          ]
+        },
+        {
+          "name": "form",
+          "instances": [
+            "section.stay-connected .stay-form"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-1",
+          "name": "Hero",
+          "selector": "section.hero",
+          "style": null,
+          "blocks": [
+            "hero-video"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-2",
+          "name": "Executive Spotlight",
+          "selector": "section.spotlight",
+          "style": null,
+          "blocks": [
+            "carousel-spotlight"
+          ],
+          "defaultContent": [
+            "section.spotlight .section-eyebrow",
+            "section.spotlight .spotlight-headline",
+            "section.spotlight .spotlight-body"
+          ]
+        },
+        {
+          "id": "section-3",
+          "name": "Get to Know SEI",
+          "selector": "section.know-sei",
+          "style": null,
+          "blocks": [
+            "accordion-pillars"
+          ],
+          "defaultContent": [
+            "section.know-sei .section-eyebrow",
+            "section.know-sei .section-headline",
+            "section.know-sei .section-body"
+          ]
+        },
+        {
+          "id": "section-4",
+          "name": "Proof in Practice",
+          "selector": "section.trusted",
+          "style": "grey",
+          "blocks": [
+            "tabs-casestudy"
+          ],
+          "defaultContent": [
+            "section.trusted .section-eyebrow",
+            "section.trusted .section-headline",
+            "section.trusted .trusted-header-sub"
+          ]
+        },
+        {
+          "id": "section-5",
+          "name": "Scale and Impact",
+          "selector": "section.by-numbers",
+          "style": null,
+          "blocks": [
+            "cards-stats"
+          ],
+          "defaultContent": [
+            "section.by-numbers .by-numbers-eyebrow",
+            "section.by-numbers .by-numbers-headline",
+            "section.by-numbers .by-numbers-sub"
+          ]
+        },
+        {
+          "id": "section-6",
+          "name": "Expert Insights",
+          "selector": "section.insights-bd",
+          "style": null,
+          "blocks": [
+            "cards-insights"
+          ],
+          "defaultContent": [
+            "section.insights-bd .section-eyebrow",
+            "section.insights-bd .insights-bd-headline",
+            "section.insights-bd .insights-bd-all-cta"
+          ]
+        },
+        {
+          "id": "section-7",
+          "name": "Stay Connected",
+          "selector": "section.stay-connected",
+          "style": "dark",
+          "blocks": [
+            "form"
+          ],
+          "defaultContent": [
+            "section.stay-connected .stay-eyebrow",
+            "section.stay-connected .stay-headline",
+            "section.stay-connected .stay-body"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,41 +1,41 @@
-/*
- * Copyright 2020 Adobe. All rights reserved.
- * This file is licensed to you under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License. You may obtain a copy
- * of the License at http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under
- * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
- * OF ANY KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
- */
+@import url('brand.css');
+
+@font-face {
+  font-family: "DM Sans Fallback";
+  size-adjust: 105%;
+  src: local('Arial');
+}
 
 :root {
   /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
-  --overlay-background-color:lightgrey;
+  --background-color: #fff;
+  --light-color: var(--color-grey);
+  --dark-color: var(--color-dark);
+  --text-color: #101828;
+  --link-color: #364153;
+  --link-hover-color: #101828;
+  --overlay-background-color: var(--color-grey);
+  --grey-background: var(--color-grey);
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  --body-font-family: var(--body-font-family);
+  --heading-font-family: var(--heading-font-family);
 
   /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+  --body-font-size-m: 16px;
+  --body-font-size-s: 14px;
+  --body-font-size-xs: 13px;
 
   /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  --heading-font-size-xxl: 36px;
+  --heading-font-size-xl: 28px;
+  --heading-font-size-l: 24px;
+  --heading-font-size-m: 20px;
+  --heading-font-size-s: 18px;
+  --heading-font-size-xs: 16px;
+
+  /* layout */
+  --section-max-width: 1200px;
 
   /* nav heights */
   --nav-height: 64px;
@@ -43,33 +43,14 @@
   --header-height: var(--nav-height);
 }
 
-/* fallback fonts */
-@font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
-  src: local('Arial');
-}
-
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
-  src: local('Arial');
-}
-
 @media (width >= 900px) {
   :root {
-    /* body sizes */
-    --body-font-size-m: 18px;
-    --body-font-size-s: 16px;
-    --body-font-size-xs: 14px;
-
-    /* heading sizes */
-    --heading-font-size-xxl: 45px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
-    --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
+    --heading-font-size-xxl: 72px;
+    --heading-font-size-xl: 40px;
+    --heading-font-size-l: 32px;
+    --heading-font-size-m: 20px;
+    --heading-font-size-s: 18px;
+    --heading-font-size-xs: 16px;
   }
 }
 
@@ -80,7 +61,8 @@ body {
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  font-weight: 400;
+  line-height: 1.75;
 }
 
 body.appear {
@@ -107,17 +89,20 @@ footer .footer[data-block-status="loaded"] {
   }
 }
 
+/* headings */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
+  margin-top: 0;
+  margin-bottom: 8px;
   font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-color);
   scroll-margin: 40px;
 }
 
@@ -134,8 +119,13 @@ ol,
 ul,
 pre,
 blockquote {
-  margin-top: 0.8em;
+  margin-top: 0;
   margin-bottom: 0.25em;
+}
+
+p {
+  color: var(--color-muted);
+  line-height: 1.75;
 }
 
 code,
@@ -152,7 +142,7 @@ pre {
 }
 
 main > div {
-  margin: 40px 16px;
+  margin: 0 16px;
 }
 
 input,
@@ -174,49 +164,20 @@ a:hover {
   text-decoration: underline;
 }
 
-/* buttons */
-a.button:any-link,
-button {
-  box-sizing: border-box;
-  display: inline-block;
-  max-width: 100%;
-  margin: 12px 0;
-  border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
-  font-family: var(--body-font-family);
-  font-style: normal;
-  font-weight: 500;
-  line-height: 1.25;
-  text-align: center;
-  text-decoration: none;
-  background-color: var(--link-color);
-  color: var(--background-color);
-  cursor: pointer;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
+/* button reset for EDS */
+main .button-container { display: inline; }
 
-a.button:hover,
-a.button:focus,
-button:hover,
-button:focus {
-  background-color: var(--link-hover-color);
-  cursor: pointer;
-}
-
-button:disabled,
-button:disabled:hover {
-  background-color: var(--light-color);
-  cursor: unset;
-}
-
-a.button.secondary,
-button.secondary {
-  background-color: unset;
-  border: 2px solid currentcolor;
-  color: var(--text-color);
+main a.button:any-link {
+  background: none;
+  border: none;
+  border-radius: 0;
+  color: var(--link-color);
+  font-size: inherit;
+  font-weight: inherit;
+  padding: 0;
+  margin: 0;
+  text-decoration: underline;
+  white-space: normal;
 }
 
 main img {
@@ -238,17 +199,19 @@ main img {
 
 /* sections */
 main > .section {
-  margin: 40px 0;
+  margin: 0;
+  padding: 80px 0;
 }
 
 main > .section > div {
-  max-width: 1200px;
+  max-width: var(--section-max-width);
   margin: auto;
   padding: 0 24px;
 }
 
 main > .section:first-of-type {
   margin-top: 0;
+  padding: 0;
 }
 
 @media (width >= 900px) {
@@ -261,6 +224,30 @@ main > .section:first-of-type {
 main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
-  margin: 0;
-  padding: 40px 0;
+}
+
+main .section.grey {
+  background-color: var(--color-grey);
+}
+
+main .section.dark {
+  background-color: var(--color-dark);
+  color: #fff;
+}
+
+main .section.dark h1,
+main .section.dark h2,
+main .section.dark h3,
+main .section.dark h4,
+main .section.dark h5,
+main .section.dark h6 {
+  color: #fff;
+}
+
+main .section.dark p {
+  color: rgb(255 255 255 / 70%);
+}
+
+main .section.dark a:any-link {
+  color: #fff;
 }

@@ -1,0 +1,20 @@
+:root {
+  --heading-font-family: "DM Sans", -apple-system, blinkmacsystemfont, "Segoe UI", sans-serif;
+  --body-font-family: "DM Sans", -apple-system, blinkmacsystemfont, "Segoe UI", sans-serif;
+  --background-color: #fff;
+  --text-color: #101828;
+  --link-color: #364153;
+  --link-hover-color: #101828;
+  --section-padding: 80px;
+  --nav-height: 64px;
+  --content-max-width: 1700px;
+  --heading-size-xxl: 72px;
+  --heading-size-xl: 40px;
+  --heading-size-l: 32px;
+  --heading-size-m: 20px;
+  --heading-size-s: 18px;
+  --heading-size-xs: 16px;
+  --color-grey: #f9fafb;
+  --color-dark: #3c3c46;
+  --color-muted: #6a7282;
+}

@@ -1,0 +1,39 @@
+{
+  "variantName": "tabs-casestudy",
+  "baseBlock": "tabs",
+  "version": "1.0.0",
+  "created": "2026-05-13T13:16:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://sei-demo-nextjs.vercel.app/",
+    "originPage": "homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "casestudy",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "logo tabs + panel with heading + paragraph + CTA + stats",
+    "buttonCount": 1,
+    "imageCount": 4
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "client case study showcases",
+      "partner testimonial tabs",
+      "tabbed content with statistics and logos"
+    ],
+    "notSuitableFor": [
+      "simple text tabs",
+      "image gallery tabs",
+      "tabs with only headings and paragraphs"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-05-13T13:16:00.000Z"
+  }
+}

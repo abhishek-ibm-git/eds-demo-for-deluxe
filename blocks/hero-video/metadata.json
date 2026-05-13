@@ -1,0 +1,39 @@
+{
+  "variantName": "hero-video",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-05-13T13:16:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://sei-demo-nextjs.vercel.app/",
+    "originPage": "homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "spacious",
+    "purpose": "hero",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "eyebrow + heading + subheading + CTA",
+    "buttonCount": 1,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "homepage hero sections",
+      "landing pages with video backgrounds",
+      "pages with full-bleed dark hero areas"
+    ],
+    "notSuitableFor": [
+      "light background hero sections",
+      "hero sections with static images only",
+      "minimal text-only hero areas"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-05-13T13:16:00.000Z"
+  }
+}

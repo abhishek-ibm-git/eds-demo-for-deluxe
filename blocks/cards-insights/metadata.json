@@ -1,0 +1,39 @@
+{
+  "variantName": "cards-insights",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-05-13T13:16:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://sei-demo-nextjs.vercel.app/",
+    "originPage": "homepage",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "insights",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "person photo + badge + name/role + category + headline + excerpt per card",
+    "buttonCount": 0,
+    "imageCount": 4
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "leadership insights and thought leadership",
+      "expert perspectives with author photos",
+      "article cards with person attribution"
+    ],
+    "notSuitableFor": [
+      "product feature cards",
+      "simple image + text cards",
+      "cards without person attribution"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-05-13T13:16:00.000Z"
+  }
+}

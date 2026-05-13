@@ -1,0 +1,7 @@
+{
+  "type": "xwalk",
+  "libraryUrl": "https://main--sta-xwalk-boilerplate--aemysites.aem.page/tools/sidekick/library.json",
+  "contentHostUrl": "author-p34454-e1943728.adobeaemcloud.com",
+  "previewOrg": "adobe-rnd",
+  "previewSite": "aem-block-collection-xwalk"
+}

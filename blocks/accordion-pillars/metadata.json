@@ -1,0 +1,39 @@
+{
+  "variantName": "accordion-pillars",
+  "baseBlock": "accordion",
+  "version": "1.0.0",
+  "created": "2026-05-13T13:16:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://sei-demo-nextjs.vercel.app/",
+    "originPage": "homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "pillars",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "4 expandable items in horizontal grid",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "value proposition pillars",
+      "expandable feature highlights",
+      "capability summaries with reveal text"
+    ],
+    "notSuitableFor": [
+      "long FAQ sections",
+      "detailed content accordions",
+      "vertical stacked accordions"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-05-13T13:16:00.000Z"
+  }
+}

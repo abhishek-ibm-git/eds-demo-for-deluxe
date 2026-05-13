@@ -1,0 +1,44 @@
+{
+  "total": 3,
+  "offset": 0,
+  "limit": 3,
+  "data": [
+    {
+      "Id": "form-email",
+      "Name": "email",
+      "Type": "email",
+      "Label": "Business Email",
+      "Placeholder": "yourname@company.com",
+      "Mandatory": "true",
+      "Value": "",
+      "Options": "",
+      "Fieldset": "",
+      "Style": ""
+    },
+    {
+      "Id": "form-submit",
+      "Name": "submit",
+      "Type": "submit",
+      "Label": "Subscribe to SEI Insights",
+      "Placeholder": "",
+      "Mandatory": "",
+      "Value": "",
+      "Options": "",
+      "Fieldset": "",
+      "Style": ""
+    },
+    {
+      "Id": "form-disclaimer",
+      "Name": "disclaimer",
+      "Type": "plaintext",
+      "Label": "By subscribing, you agree to receive marketing emails from SEI. Unsubscribe at any time.",
+      "Placeholder": "",
+      "Mandatory": "",
+      "Value": "By subscribing, you agree to receive marketing emails from SEI. Unsubscribe at any time.",
+      "Options": "",
+      "Fieldset": "",
+      "Style": ""
+    }
+  ],
+  ":type": "sheet"
+}

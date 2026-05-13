@@ -1,0 +1,18 @@
+{
+  "status": "success",
+  "url": "https://sei-demo-nextjs.vercel.app/",
+  "path": "index",
+  "timestamp": "2026-05-13T15:31:17.356Z",
+  "title": "SEI | Financial value is created between the lines.",
+  "template": "homepage",
+  "blocks": [
+    "hero-video",
+    "carousel-spotlight",
+    "accordion-pillars",
+    "tabs-casestudy",
+    "tabs-casestudy",
+    "cards-stats",
+    "cards-insights",
+    "form"
+  ]
+}

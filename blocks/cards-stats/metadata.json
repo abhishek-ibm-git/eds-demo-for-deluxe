@@ -1,0 +1,39 @@
+{
+  "variantName": "cards-stats",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-05-13T13:16:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://sei-demo-nextjs.vercel.app/",
+    "originPage": "homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "statistics",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "large value + label + short descriptor per card",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "key metrics and statistics displays",
+      "company facts and figures sections",
+      "numerical highlight grids"
+    ],
+    "notSuitableFor": [
+      "image-heavy card grids",
+      "product cards with CTAs",
+      "article/blog listing cards"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-05-13T13:16:00.000Z"
+  }
+}

@@ -79,8 +79,13 @@ async function handleSubmit(form) {
 
 export default async function decorate(block) {
   const links = [...block.querySelectorAll('a')].map((a) => a.href);
-  const formLink = links.find((link) => link.startsWith(window.location.origin) && link.endsWith('.json'));
-  const submitLink = links.find((link) => link !== formLink);
+  let formLink = links.find((link) => link.startsWith(window.location.origin) && link.endsWith('.json'));
+  if (!formLink) {
+    // Support links without .json extension — append .json
+    const candidate = links.find((link) => link.startsWith(window.location.origin) && !link.includes('submit'));
+    if (candidate) formLink = candidate.endsWith('/') ? `${candidate.slice(0, -1)}.json` : `${candidate}.json`;
+  }
+  const submitLink = links.find((link) => link !== formLink && link !== formLink?.replace('.json', ''));
   if (!formLink || !submitLink) return;
 
   const form = await createForm(formLink, submitLink);

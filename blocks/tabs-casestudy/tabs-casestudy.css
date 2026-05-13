@@ -1,0 +1,198 @@
+/* Block: tabs-casestudy */
+
+/* --- Tab List (buttons row) --- */
+.tabs-casestudy .tabs-casestudy-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  border-bottom: 1px solid rgb(229 231 235);
+}
+
+@media (width < 900px) {
+  .tabs-casestudy .tabs-casestudy-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width < 600px) {
+  .tabs-casestudy .tabs-casestudy-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Tab Button --- */
+.tabs-casestudy .tabs-casestudy-list button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 16px 24px 20px;
+  border: none;
+  border-right: 1px solid rgb(229 231 235);
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  background-color: #fff;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 400;
+  font-family: var(--body-font-family);
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
+  min-height: 132px;
+  transition: background-color 0.2s;
+}
+
+.tabs-casestudy .tabs-casestudy-list button:last-child {
+  border-right: none;
+}
+
+.tabs-casestudy .tabs-casestudy-list button p {
+  margin: 0;
+}
+
+.tabs-casestudy .tabs-casestudy-list button[aria-selected='true'] {
+  background-color: var(--color-grey);
+  border-bottom-color: rgb(0 196 248);
+  cursor: default;
+}
+
+/* --- Heading h3 --- */
+.tabs-casestudy h3 {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: var(--heading-font-family);
+  line-height: 1.2;
+  letter-spacing: -0.64px;
+  color: var(--text-color);
+  margin: 0 0 12px;
+}
+
+@media (width >= 900px) {
+  .tabs-casestudy h3 {
+    font-size: 32px;
+    line-height: 38.4px;
+  }
+}
+
+/* --- Tab Panel --- */
+.tabs-casestudy .tabs-casestudy-panel {
+  padding: 32px;
+  background-color: #fff;
+  border: none;
+  border-radius: 0 0 4px 4px;
+  margin-top: 0;
+  overflow: visible;
+}
+
+@media (width >= 900px) {
+  .tabs-casestudy .tabs-casestudy-panel {
+    padding: 44px;
+  }
+}
+
+.tabs-casestudy .tabs-casestudy-panel[aria-hidden='true'] {
+  display: none;
+}
+
+/* Panel inner content */
+.tabs-casestudy .tabs-casestudy-panel > div {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (width >= 900px) {
+  .tabs-casestudy .tabs-casestudy-panel > div {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px 64px;
+    align-items: start;
+  }
+}
+
+/* --- Panel paragraphs (base) --- */
+.tabs-casestudy .tabs-casestudy-panel > div p {
+  font-size: 16px;
+  font-family: var(--body-font-family);
+  line-height: 28px;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+@media (width >= 900px) {
+  .tabs-casestudy .tabs-casestudy-panel > div p {
+    font-size: 18px;
+    line-height: 29.7px;
+  }
+}
+
+/* --- Hide the logo image in the panel (logos are shown in the tab buttons) --- */
+.tabs-casestudy .tabs-casestudy-panel > div > p:has(picture) {
+  display: none;
+}
+
+/* --- Category tag (first visible p after h3 and hidden image p, e.g., "RIA / Wealth Management") --- */
+.tabs-casestudy .tabs-casestudy-panel > div > p:has(picture) + p {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(0 196 248);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 20px;
+  margin: 0;
+  order: -1;
+}
+
+/* --- CTA Link --- */
+.tabs-casestudy .tabs-casestudy-panel a:any-link {
+  color: rgb(0 196 248);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tabs-casestudy .tabs-casestudy-panel a:hover {
+  text-decoration: underline;
+}
+
+/* --- Stats (paragraphs with <strong> values) --- */
+.tabs-casestudy .tabs-casestudy-panel > div > p strong {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-color);
+  line-height: 36px;
+  margin-bottom: 4px;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.tabs-casestudy .tabs-casestudy-panel > div > p:has(strong) {
+  font-size: 13px;
+  line-height: 18.2px;
+  color: var(--color-muted);
+  padding: 12px 0 12px 20px;
+  border-left: 2px solid rgb(229 231 235);
+}
+
+/* On desktop: text left, stats right side-by-side */
+@media (width >= 900px) {
+  .tabs-casestudy .tabs-casestudy-panel > div > h3,
+  .tabs-casestudy .tabs-casestudy-panel > div > p:not(:has(strong), :has(picture)) {
+    grid-column: 1;
+  }
+
+  .tabs-casestudy .tabs-casestudy-panel > div > p:has(strong) {
+    grid-column: 2;
+    margin-top: 0;
+  }
+
+  .tabs-casestudy .tabs-casestudy-panel > div > p:has(strong):first-of-type {
+    grid-row: 1 / -1;
+  }
+}
