@@ -1,0 +1,136 @@
+/* cards-product -- Featured Products Hero (deluxe.com)
+   Values extracted from source computed styles. */
+
+/* Section intro (heading + paragraph) centered above the cards, matching source */
+.cards-product-container .default-content-wrapper {
+  max-width: 820px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.cards-product-container .default-content-wrapper h2 {
+  margin-bottom: 16px;
+}
+
+.cards-product-container .default-content-wrapper p {
+  font-size: var(--body-font-size-m);
+  line-height: 1.6;
+}
+
+.cards-product > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+/* Card box: white rounded card with subtle shadow */
+.cards-product > ul > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 16px;
+  background-color: #fff;
+  border: 1px solid #efefef;
+  border-radius: 8px;
+  box-shadow: rgb(0 0 0 / 25%) 0 4px 4px 0;
+  text-align: center;
+  cursor: pointer;
+  transition: scale 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Hover zoom (source: scale 1.06, scale 0.3s ease-in-out) */
+.cards-product > ul > li:hover {
+  scale: 1.06;
+  box-shadow: rgb(0 0 0 / 18%) 0 8px 18px 0;
+}
+
+@media (width >= 600px) {
+  .cards-product > ul > li {
+    width: calc((100% - 16px) / 2);
+  }
+}
+
+@media (width >= 900px) {
+  .cards-product > ul > li {
+    width: 207px;
+    min-height: 158px;
+  }
+}
+
+/* Card body cells (both the empty icon cell and the text cell) */
+.cards-product .cards-product-card-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Card label: bold, centered. Applies to the heading and the first link
+   that acts as the product name. */
+.cards-product .cards-product-card-body h3 {
+  margin: 0 0 4px;
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: none;
+  color: var(--text-color);
+}
+
+.cards-product .cards-product-card-body p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Empty image/icon cell -- source icons (inline SVG sprites) did not migrate.
+   Collapse the empty paragraph so cards stay compact and centered. */
+.cards-product .cards-product-card-body > p:empty {
+  display: none;
+}
+
+/* Reset EDS auto-decorated button styling -- source links are plain text,
+   not the red-pill global button. */
+.cards-product .cards-product-card-body .button-container {
+  display: block;
+  margin: 0;
+}
+
+.cards-product .cards-product-card-body a.button:any-link {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+  color: var(--link-color);
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-transform: none;
+  text-decoration: none;
+  white-space: normal;
+}
+
+.cards-product .cards-product-card-body a.button:any-link:hover {
+  color: var(--link-hover-color);
+  background: none;
+  border: none;
+  text-decoration: underline;
+}
+
+/* Single-link cards (no heading): the lone link is the bold product label. */
+.cards-product .cards-product-card-body > .button-container:only-child a.button:any-link {
+  font-size: 20px;
+  font-weight: 700;
+}

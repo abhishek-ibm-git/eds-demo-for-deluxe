@@ -1,0 +1,70 @@
+/* eslint-disable */
+/* global WebImporter */
+/**
+ * Parser for cards-services. Base block: cards.
+ * Source: https://www.deluxe.com/ (Proven Success flash cards — "Flashing Cards Variation-2")
+ * Generated: 2026-06-18
+ *
+ * Container block (cards). Each card = one row with two cells:
+ *   - cell 1 (field:image): card icon/image
+ *   - cell 2 (field:text):  H3 title + body description
+ *
+ * Source structure: each card is a `.swiper-slide.flashing-cards-variation-2__item`
+ * containing an `.flashing-cards-variation-2__icon-container` (SVG icons) and a
+ * `.flashing-cards-variation-2__content` (h3 title + p bodycopy).
+ */
+export default function parse(element, { document }) {
+  // Each card is a swiper slide. Fall back to the inner content blocks if slide markup varies.
+  let cards = Array.from(
+    element.querySelectorAll('.swiper-slide.flashing-cards-variation-2__item'),
+  );
+  if (!cards.length) {
+    cards = Array.from(element.querySelectorAll('.flashing-cards-variation-2__item'));
+  }
+  if (!cards.length) {
+    // Last-resort fallback: derive cards from the content blocks themselves.
+    cards = Array.from(element.querySelectorAll('.flashing-cards-variation-2__content'))
+      .map((c) => c.closest('.swiper-slide, .flashing-cards-variation-2__item') || c);
+  }
+
+  const cells = [];
+
+  cards.forEach((card) => {
+    // --- Image / icon cell ---
+    // The icon container holds inline SVGs (icon-normal / icon-active). Prefer a real
+    // image asset if present, otherwise capture the icon SVG markup.
+    const imageFrag = document.createDocumentFragment();
+    imageFrag.appendChild(document.createComment(' field:image '));
+    const img = card.querySelector('img');
+    const svg = card.querySelector('.flashing-cards-variation-2__icon-container svg, .icon-active svg, .icon-normal svg');
+    if (img) {
+      imageFrag.appendChild(img);
+    } else if (svg) {
+      imageFrag.appendChild(svg);
+    }
+
+    // --- Text cell (title + description) ---
+    const content = card.querySelector('.flashing-cards-variation-2__content') || card;
+    const title = content.querySelector('h3, .flashing-cards-variation-2__title, [class*="title"]');
+    const description = content.querySelector('p, .flashing-cards-variation-2__bodycopy, [class*="bodycopy"]');
+
+    const textFrag = document.createDocumentFragment();
+    textFrag.appendChild(document.createComment(' field:text '));
+    if (title) textFrag.appendChild(title);
+    if (description) textFrag.appendChild(description);
+
+    // Skip cards that have no usable content.
+    if (!title && !description && !img && !svg) return;
+
+    cells.push([imageFrag, textFrag]);
+  });
+
+  // Empty-block guard: nothing extracted, unwrap the element.
+  if (!cells.length) {
+    element.replaceWith(...element.childNodes);
+    return;
+  }
+
+  const block = WebImporter.Blocks.createBlock(document, { name: 'cards-services', cells });
+  element.replaceWith(block);
+}

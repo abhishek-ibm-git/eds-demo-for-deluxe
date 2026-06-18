@@ -1,0 +1,7 @@
+{
+  "name": "story-banner",
+  "baseBlock": "columns",
+  "purpose": "Two-column story banner: text (eyebrow + heading + description + CTA) on the left, looping background video on the right",
+  "source": "https://www.deluxe.com/ (home-story-banner-gen3-v1)",
+  "createdDate": "2026-06-18"
+}

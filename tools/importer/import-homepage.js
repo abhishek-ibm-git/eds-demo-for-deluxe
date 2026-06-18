@@ -1,152 +1,133 @@
 /* eslint-disable */
 /* global WebImporter */
 
-import heroVideoParser from './parsers/hero-video.js';
-import carouselSpotlightParser from './parsers/carousel-spotlight.js';
-import accordionPillarsParser from './parsers/accordion-pillars.js';
-import tabsCasestudyParser from './parsers/tabs-casestudy.js';
+// PARSER IMPORTS
+import cardsProductParser from './parsers/cards-product.js';
+import storyBannerParser from './parsers/story-banner.js';
+import tabsSolutionsParser from './parsers/tabs-solutions.js';
 import cardsStatsParser from './parsers/cards-stats.js';
-import cardsInsightsParser from './parsers/cards-insights.js';
-import formParser from './parsers/form.js';
+import cardsServicesParser from './parsers/cards-services.js';
+import cardsNewsParser from './parsers/cards-news.js';
 
-import seiDemoCleanupTransformer from './transformers/sei-demo-cleanup.js';
-import seiDemoSectionsTransformer from './transformers/sei-demo-sections.js';
+// TRANSFORMER IMPORTS
+import cleanupTransformer from './transformers/deluxe-cleanup.js';
+import sectionsTransformer from './transformers/deluxe-sections.js';
 
-const parsers = {
-  'hero-video': heroVideoParser,
-  'carousel-spotlight': carouselSpotlightParser,
-  'accordion-pillars': accordionPillarsParser,
-  'tabs-casestudy': tabsCasestudyParser,
-  'cards-stats': cardsStatsParser,
-  'cards-insights': cardsInsightsParser,
-  'form': formParser,
-};
-
+// PAGE TEMPLATE CONFIGURATION - Embedded from page-templates.json
 const PAGE_TEMPLATE = {
   name: 'homepage',
-  description: 'SEI Demo homepage with hero, content sections, and call-to-action areas',
+  description: 'Deluxe homepage - AEM-authored page with featured products hero, story banner, solutions slider, statistics slider, flash cards, news & updates, and CTA sections',
   urls: [
-    'https://sei-demo-nextjs.vercel.app/'
+    'https://www.deluxe.com/'
   ],
   blocks: [
     {
-      name: 'hero-video',
-      instances: ['section.hero']
+      name: 'cards-product',
+      instances: ['div.featuredproductsherogen3v1']
     },
     {
-      name: 'carousel-spotlight',
-      instances: ['section.spotlight .spotlight-carousel-outer']
+      name: 'story-banner',
+      instances: ['div.homestorybannergen3v1']
     },
     {
-      name: 'accordion-pillars',
-      instances: ['section.know-sei .know-sei-grid']
-    },
-    {
-      name: 'tabs-casestudy',
-      instances: ['section.trusted .trusted-tabs', 'section.trusted .trusted-panel']
+      name: 'tabs-solutions',
+      instances: ['div.solutionslidegen3v2']
     },
     {
       name: 'cards-stats',
-      instances: ['section.by-numbers .by-numbers-grid']
+      instances: ['div.statisticslidergen3v1']
     },
     {
-      name: 'cards-insights',
-      instances: ['section.insights-bd .insights-bd-grid']
+      name: 'cards-services',
+      instances: ['div.flashcardsvariation2gen3v1']
     },
     {
-      name: 'form',
-      instances: ['section.stay-connected .stay-form']
+      name: 'cards-news',
+      instances: ['div.newsandupdatesgen3v1']
     }
   ],
   sections: [
     {
-      id: 'section-1',
-      name: 'Hero',
-      selector: 'section.hero',
+      id: 'rc1',
+      name: 'Featured Products Hero',
+      selector: 'div.featuredproductsherogen3v1',
       style: null,
-      blocks: ['hero-video'],
+      blocks: ['cards-product'],
+      defaultContent: [
+        'div.featured-products-hero-gen3v1__content__title',
+        'div.featured-products-hero-gen3v1__content__description'
+      ]
+    },
+    {
+      id: 'rc2',
+      name: 'Story Banner',
+      selector: 'div.homestorybannergen3v1',
+      style: null,
+      blocks: ['story-banner'],
       defaultContent: []
     },
     {
-      id: 'section-2',
-      name: 'Executive Spotlight',
-      selector: 'section.spotlight',
+      id: 'rc3',
+      name: 'Solutions Slider',
+      selector: 'div.solutionslidegen3v2',
       style: null,
-      blocks: ['carousel-spotlight'],
-      defaultContent: [
-        'section.spotlight .section-eyebrow',
-        'section.spotlight .spotlight-headline',
-        'section.spotlight .spotlight-body'
-      ]
+      blocks: ['tabs-solutions'],
+      defaultContent: ['div.solutions-slide-gen3-v2_head-content']
     },
     {
-      id: 'section-3',
-      name: 'Get to Know SEI',
-      selector: 'section.know-sei',
-      style: null,
-      blocks: ['accordion-pillars'],
-      defaultContent: [
-        'section.know-sei .section-eyebrow',
-        'section.know-sei .section-headline',
-        'section.know-sei .section-body'
-      ]
-    },
-    {
-      id: 'section-4',
-      name: 'Proof in Practice',
-      selector: 'section.trusted',
-      style: 'grey',
-      blocks: ['tabs-casestudy'],
-      defaultContent: [
-        'section.trusted .section-eyebrow',
-        'section.trusted .section-headline',
-        'section.trusted .trusted-header-sub'
-      ]
-    },
-    {
-      id: 'section-5',
-      name: 'Scale and Impact',
-      selector: 'section.by-numbers',
-      style: null,
+      id: 'rc4',
+      name: 'Statistics Slider',
+      selector: 'div.statisticslidergen3v1',
+      style: 'stats-blue',
       blocks: ['cards-stats'],
-      defaultContent: [
-        'section.by-numbers .by-numbers-eyebrow',
-        'section.by-numbers .by-numbers-headline',
-        'section.by-numbers .by-numbers-sub'
-      ]
+      defaultContent: ['div.redesign-about-us__slider-title']
     },
     {
-      id: 'section-6',
-      name: 'Expert Insights',
-      selector: 'section.insights-bd',
+      id: 'rc5',
+      name: 'Proven Success Flash Cards',
+      selector: 'div.flashcardsvariation2gen3v1',
       style: null,
-      blocks: ['cards-insights'],
-      defaultContent: [
-        'section.insights-bd .section-eyebrow',
-        'section.insights-bd .insights-bd-headline',
-        'section.insights-bd .insights-bd-all-cta'
-      ]
+      blocks: ['cards-services'],
+      defaultContent: ['div.flashing-cards-variation-2__title-container']
     },
     {
-      id: 'section-7',
-      name: 'Stay Connected',
-      selector: 'section.stay-connected',
-      style: 'dark',
-      blocks: ['form'],
-      defaultContent: [
-        'section.stay-connected .stay-eyebrow',
-        'section.stay-connected .stay-headline',
-        'section.stay-connected .stay-body'
-      ]
+      id: 'rc6',
+      name: 'News and Insights',
+      selector: 'div.newsandupdatesgen3v1',
+      style: null,
+      blocks: ['cards-news'],
+      defaultContent: []
+    },
+    {
+      id: 'rc7',
+      name: 'Get Started CTA',
+      selector: 'div.postctagen3v1',
+      style: 'cta-red',
+      blocks: [],
+      defaultContent: ['div.postctagen3v1']
     }
   ]
 };
 
+// PARSER REGISTRY
+const parsers = {
+  'cards-product': cardsProductParser,
+  'story-banner': storyBannerParser,
+  'tabs-solutions': tabsSolutionsParser,
+  'cards-stats': cardsStatsParser,
+  'cards-services': cardsServicesParser,
+  'cards-news': cardsNewsParser,
+};
+
+// TRANSFORMER REGISTRY - cleanup runs first, sections transformer runs after (afterTransform)
 const transformers = [
-  seiDemoCleanupTransformer,
-  ...(PAGE_TEMPLATE.sections && PAGE_TEMPLATE.sections.length > 1 ? [seiDemoSectionsTransformer] : []),
+  cleanupTransformer,
+  ...(PAGE_TEMPLATE.sections && PAGE_TEMPLATE.sections.length > 1 ? [sectionsTransformer] : []),
 ];
 
+/**
+ * Execute all page transformers for a specific hook
+ */
 function executeTransformers(hookName, element, payload) {
   const enhancedPayload = {
     ...payload,
@@ -162,6 +143,9 @@ function executeTransformers(hookName, element, payload) {
   });
 }
 
+/**
+ * Find all blocks on the page based on the embedded template configuration
+ */
 function findBlocksOnPage(document, template) {
   const pageBlocks = [];
 
@@ -186,17 +170,22 @@ function findBlocksOnPage(document, template) {
   return pageBlocks;
 }
 
+// EXPORT DEFAULT CONFIGURATION
 export default {
   transform: (payload) => {
     const { document, url, html, params } = payload;
 
     const main = document.body;
 
+    // 1. Execute beforeTransform transformers (initial cleanup)
     executeTransformers('beforeTransform', main, payload);
 
+    // 2. Find blocks on page using embedded template
     const pageBlocks = findBlocksOnPage(document, PAGE_TEMPLATE);
 
+    // 3. Parse each block using registered parsers
     pageBlocks.forEach((block) => {
+      if (!block.element.parentNode) return; // Already replaced by earlier parser
       const parser = parsers[block.name];
       if (parser) {
         try {
@@ -209,14 +198,17 @@ export default {
       }
     });
 
+    // 4. Execute afterTransform transformers (final cleanup + section breaks/metadata)
     executeTransformers('afterTransform', main, payload);
 
+    // 5. Apply WebImporter built-in rules
     const hr = document.createElement('hr');
     main.appendChild(hr);
     WebImporter.rules.createMetadata(main, document);
     WebImporter.rules.transformBackgroundImages(main, document);
     WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
 
+    // 6. Generate sanitized path
     const path = WebImporter.FileUtils.sanitizePath(
       new URL(params.originalURL).pathname.replace(/\/$/, '').replace(/\.html$/, '') || '/index'
     );

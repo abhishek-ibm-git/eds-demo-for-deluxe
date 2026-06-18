@@ -1,82 +1,241 @@
-/* Block: cards-stats -- stats grid with large numbers, labels, and sublabels */
+/* Block: cards-stats -- Deluxe "Why Deluxe?" interactive stat orbit.
+   A central detail panel surrounded by 7 selector circles in an arc.
+   The selected circle is filled black; the others are dashed outlines.
+   Light-blue band (#dbecee) via section style stats-blue. */
 
-/* Extracted values from source: sei-demo-nextjs.vercel.app section.by-numbers */
+/* Section intro header (WHY DELUXE? + heading) */
+.cards-stats-container .default-content-wrapper {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
 
-.cards-stats > ul {
-  list-style: none;
+.cards-stats-container .default-content-wrapper > p:first-child {
+  margin: 0 0 16px;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 2.88px;
+  text-transform: uppercase;
+}
+
+.cards-stats-container .default-content-wrapper h2 {
   margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
-}
-
-.cards-stats > ul > li {
-  border-bottom: 1px solid #e5e7eb;
-  padding: 24px 0;
-  background-color: transparent;
-}
-
-.cards-stats > ul > li:last-child {
-  border-bottom: none;
-}
-
-/* Hide the empty first cell (from empty authored cell) */
-.cards-stats > ul > li > .cards-stats-card-body:first-child:empty {
-  display: none;
-}
-
-/* Stat number */
-.cards-stats h4 {
-  font-size: 40px;
+  font-size: 32px;
   font-weight: 700;
-  font-family: var(--heading-font-family);
-  line-height: 1;
-  letter-spacing: -1.68px;
-  color: var(--text-color);
-  margin: 0 0 12px;
-}
-
-/* Stat label */
-.cards-stats .cards-stats-card-body p:first-of-type {
-  font-size: var(--body-font-size-s);
-  font-weight: 400;
-  line-height: 21px;
-  color: var(--text-color);
-  margin: 0;
-}
-
-/* Stat sublabel */
-.cards-stats .cards-stats-card-body p:last-of-type {
-  font-size: 11px;
-  font-weight: 400;
-  line-height: 16.5px;
-  color: #99a1af;
-  margin: 0;
+  line-height: 1.3;
+  text-transform: capitalize;
 }
 
 @media (width >= 900px) {
-  .cards-stats > ul {
-    grid-template-columns: repeat(4, 1fr);
+  .cards-stats-container .default-content-wrapper h2 {
+    font-size: 44px;
+  }
+}
+
+/* ---- Stage ---- */
+.cards-stats .cards-stats-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+/* ---- Centre detail panel ---- */
+.cards-stats .cards-stats-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  order: -1;
+}
+
+.cards-stats .cards-stats-detail-number {
+  font-family: var(--heading-font-family);
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text-color);
+}
+
+.cards-stats .cards-stats-detail-number::after {
+  content: '';
+  display: block;
+  width: 180px;
+  height: 2px;
+  margin: 14px auto 0;
+  background: var(--text-color);
+}
+
+.cards-stats .cards-stats-detail-title {
+  margin-top: 20px;
+  font-family: var(--heading-font-family);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.cards-stats .cards-stats-detail-desc {
+  max-width: 360px;
+  margin: 12px 0 0;
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+/* ---- Selector circles ---- */
+.cards-stats .cards-stats-orbit {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.cards-stats .cards-stats-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 116px;
+  height: 116px;
+  margin: 0;
+  padding: 10px;
+  border: 2px dashed rgb(0 15 12 / 35%);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-color);
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.cards-stats .cards-stats-circle-number {
+  font-family: var(--heading-font-family);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.cards-stats .cards-stats-circle-title {
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.cards-stats .cards-stats-circle:hover {
+  border-color: var(--text-color);
+}
+
+/* Selected circle = filled black with white text */
+.cards-stats .cards-stats-circle[aria-selected='true'] {
+  border: 2px solid var(--text-color);
+  background: var(--text-color);
+  color: #fff;
+  cursor: default;
+}
+
+/* ===========================================================
+   Desktop: orbital arc -- centre detail in the middle, 7 circles
+   arranged in a horseshoe around it (source layout, 803x465 orbit,
+   circles 125px).
+   =========================================================== */
+@media (width >= 900px) {
+  .cards-stats .cards-stats-stage {
+    display: block;
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    min-height: 520px;
+    margin: 0 auto;
   }
 
-  .cards-stats > ul > li {
-    border-bottom: none;
-    border-right: 1px solid #e5e7eb;
-    padding: 0 40px 48px;
+  /* Centre detail */
+  .cards-stats .cards-stats-detail {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 380px;
+    transform: translate(-50%, -50%);
+    z-index: 1;
   }
 
-  .cards-stats > ul > li:first-child {
-    padding-left: 0;
+  .cards-stats .cards-stats-detail-number {
+    font-size: 100px;
   }
 
-  .cards-stats > ul > li:last-child {
-    border-right: none;
-    padding-right: 0;
+  .cards-stats .cards-stats-detail-number::after {
+    width: 200px;
   }
 
-  .cards-stats h4 {
-    font-size: 56px;
-    line-height: 56px;
+  .cards-stats .cards-stats-detail-title {
+    font-size: 30px;
+  }
+
+  /* Orbit becomes a positioning context spanning the stage */
+  .cards-stats .cards-stats-orbit {
+    display: block;
+    position: absolute;
+    inset: 0;
+  }
+
+  .cards-stats .cards-stats-circle {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    padding: 12px;
+  }
+
+  .cards-stats .cards-stats-circle-number {
+    font-size: 26px;
+  }
+
+  .cards-stats .cards-stats-circle-title {
+    font-size: 12px;
+  }
+
+  /* 7 positions in a horseshoe arc (matching source order):
+     1 $2T+ lower-left, 2 $34B mid-left, 3 $42B upper-left,
+     4 1.2T top-centre, 5 147K upper-right, 6 3M mid-right,
+     7 2.5K+ lower-right */
+  .cards-stats .cards-stats-circle:nth-child(1) {
+    top: 360px;
+    left: 0;
+  }
+
+  .cards-stats .cards-stats-circle:nth-child(2) {
+    top: 190px;
+    left: 30px;
+  }
+
+  .cards-stats .cards-stats-circle:nth-child(3) {
+    top: 50px;
+    left: 150px;
+  }
+
+  .cards-stats .cards-stats-circle:nth-child(4) {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .cards-stats .cards-stats-circle:nth-child(5) {
+    top: 50px;
+    right: 150px;
+    left: auto;
+  }
+
+  .cards-stats .cards-stats-circle:nth-child(6) {
+    top: 190px;
+    right: 30px;
+    left: auto;
+  }
+
+  .cards-stats .cards-stats-circle:nth-child(7) {
+    top: 360px;
+    right: 0;
+    left: auto;
   }
 }

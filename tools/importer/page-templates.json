@@ -6,147 +6,143 @@
     {
       "name": "homepage",
       "urls": [
-        "https://sei-demo-nextjs.vercel.app/"
+        "https://www.deluxe.com/"
       ],
-      "description": "SEI Demo homepage with hero, content sections, and call-to-action areas",
+      "representativeUrl": "https://www.deluxe.com/",
+      "coverageGaps": [],
+      "description": "Deluxe homepage - AEM-authored page with featured products hero, story banner, solutions slider, statistics slider, flash cards, news & updates, and CTA sections",
       "blocks": [
         {
-          "name": "hero-video",
+          "name": "cards-product",
           "instances": [
-            "section.hero"
+            "div.featuredproductsherogen3v1"
           ]
         },
         {
-          "name": "carousel-spotlight",
+          "name": "story-banner",
           "instances": [
-            "section.spotlight .spotlight-carousel-outer"
+            "div.homestorybannergen3v1"
           ]
         },
         {
-          "name": "accordion-pillars",
+          "name": "tabs-solutions",
           "instances": [
-            "section.know-sei .know-sei-grid"
+            "div.solutionslidegen3v2"
           ]
         },
         {
-          "name": "tabs-casestudy",
+          "name": "section-stats",
           "instances": [
-            "section.trusted .trusted-tabs",
-            "section.trusted .trusted-panel"
-          ]
+            "div.statisticslidergen3v1"
+          ],
+          "section": "stats-blue"
         },
         {
           "name": "cards-stats",
           "instances": [
-            "section.by-numbers .by-numbers-grid"
+            "div.statisticslidergen3v1"
           ]
         },
         {
-          "name": "cards-insights",
+          "name": "cards-services",
           "instances": [
-            "section.insights-bd .insights-bd-grid"
+            "div.flashcardsvariation2gen3v1"
           ]
         },
         {
-          "name": "form",
+          "name": "cards-news",
           "instances": [
-            "section.stay-connected .stay-form"
+            "div.newsandupdatesgen3v1"
           ]
+        },
+        {
+          "name": "section-cta",
+          "instances": [
+            "div.postctagen3v1"
+          ],
+          "section": "cta-red"
         }
       ],
       "sections": [
         {
-          "id": "section-1",
-          "name": "Hero",
-          "selector": "section.hero",
+          "id": "rc1",
+          "name": "Featured Products Hero",
+          "selector": "div.featuredproductsherogen3v1",
           "style": null,
           "blocks": [
-            "hero-video"
-          ],
-          "defaultContent": []
-        },
-        {
-          "id": "section-2",
-          "name": "Executive Spotlight",
-          "selector": "section.spotlight",
-          "style": null,
-          "blocks": [
-            "carousel-spotlight"
+            "cards-product"
           ],
           "defaultContent": [
-            "section.spotlight .section-eyebrow",
-            "section.spotlight .spotlight-headline",
-            "section.spotlight .spotlight-body"
+            "div.featured-products-hero-gen3v1__content__title",
+            "div.featured-products-hero-gen3v1__content__description"
           ]
         },
         {
-          "id": "section-3",
-          "name": "Get to Know SEI",
-          "selector": "section.know-sei",
+          "id": "rc2",
+          "name": "Story Banner",
+          "selector": "div.homestorybannergen3v1",
           "style": null,
-          "blocks": [
-            "accordion-pillars"
-          ],
+          "blocks": [],
           "defaultContent": [
-            "section.know-sei .section-eyebrow",
-            "section.know-sei .section-headline",
-            "section.know-sei .section-body"
+            "div.homestorybannergen3v1"
           ]
         },
         {
-          "id": "section-4",
-          "name": "Proof in Practice",
-          "selector": "section.trusted",
-          "style": "grey",
+          "id": "rc3",
+          "name": "Solutions Slider",
+          "selector": "div.solutionslidegen3v2",
+          "style": null,
           "blocks": [
-            "tabs-casestudy"
+            "tabs-solutions"
           ],
           "defaultContent": [
-            "section.trusted .section-eyebrow",
-            "section.trusted .section-headline",
-            "section.trusted .trusted-header-sub"
+            "div.solutions-slide-gen3-v2_head-content"
           ]
         },
         {
-          "id": "section-5",
-          "name": "Scale and Impact",
-          "selector": "section.by-numbers",
-          "style": null,
+          "id": "rc4",
+          "name": "Statistics Slider",
+          "selector": "div.statisticslidergen3v1",
+          "style": "stats-blue",
           "blocks": [
             "cards-stats"
           ],
           "defaultContent": [
-            "section.by-numbers .by-numbers-eyebrow",
-            "section.by-numbers .by-numbers-headline",
-            "section.by-numbers .by-numbers-sub"
+            "div.redesign-about-us__slider-title"
           ]
         },
         {
-          "id": "section-6",
-          "name": "Expert Insights",
-          "selector": "section.insights-bd",
+          "id": "rc5",
+          "name": "Proven Success Flash Cards",
+          "selector": "div.flashcardsvariation2gen3v1",
           "style": null,
           "blocks": [
-            "cards-insights"
+            "cards-services"
           ],
           "defaultContent": [
-            "section.insights-bd .section-eyebrow",
-            "section.insights-bd .insights-bd-headline",
-            "section.insights-bd .insights-bd-all-cta"
+            "div.flashing-cards-variation-2__title-container"
           ]
         },
         {
-          "id": "section-7",
-          "name": "Stay Connected",
-          "selector": "section.stay-connected",
-          "style": "dark",
+          "id": "rc6",
+          "name": "News and Insights",
+          "selector": "div.newsandupdatesgen3v1",
+          "style": null,
           "blocks": [
-            "form"
+            "cards-news"
           ],
           "defaultContent": [
-            "section.stay-connected .stay-eyebrow",
-            "section.stay-connected .stay-headline",
-            "section.stay-connected .stay-body"
+            "div.news-and-update-gen3-v1__contents-details"
+          ]
+        },
+        {
+          "id": "rc7",
+          "name": "Get Started CTA",
+          "selector": "div.postctagen3v1",
+          "style": "cta-red",
+          "blocks": [],
+          "defaultContent": [
+            "div.postctagen3v1"
           ]
         }
       ]

@@ -1,0 +1,103 @@
+/* Block: cards-services -- "Proven Success" flash cards (Deluxe) */
+
+/* Values extracted from source computed styles (div.flashing-cards-variation-2__item). */
+
+/* --- Card grid: 4 across on desktop, mobile-first single column --- */
+.cards-services > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+/* --- Card --- */
+.cards-services > ul > li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border: none;
+  border-radius: 0;
+  box-shadow: rgb(0 0 0 / 25%) 0 4.3px 17.2px 0;
+
+  /* room for the bottom accent bar (14px) drawn via ::after */
+  padding-bottom: 19px;
+  transition: box-shadow 0.2s ease;
+}
+
+/* Red accent bar at the bottom of each card (source: __solid-block-bottom) */
+.cards-services > ul > li::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 14px;
+  background-color: #ddd;
+  transition: background-color 0.2s ease;
+}
+
+/* Hover flip -> brand red accent (source active/hover state) */
+.cards-services > ul > li:hover::after {
+  background-color: var(--brand-red);
+}
+
+/* --- Title (source __title) --- */
+.cards-services .cards-services-card-body h3 {
+  margin: 15px 0 20px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: normal;
+  text-transform: capitalize;
+  color: rgb(107 107 107);
+  transition: color 0.2s ease;
+}
+
+/* --- Body copy (source __bodycopy) --- */
+.cards-services .cards-services-card-body p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: var(--text-color);
+}
+
+/* Hover flip -> red title */
+.cards-services > ul > li:hover .cards-services-card-body h3 {
+  color: var(--brand-red);
+}
+
+/* --- Cells --- */
+
+/* First cell = service icon (extracted from source as standalone SVG). */
+.cards-services > ul > li > div:first-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 48px 0 15px;
+  padding: 0 27px;
+}
+
+.cards-services > ul > li > div:first-child p {
+  margin: 0;
+}
+
+.cards-services > ul > li > div:first-child img {
+  width: 72px;
+  height: 72px;
+}
+
+/* Body cell = title + copy */
+.cards-services .cards-services-card-body:last-child {
+  margin: 0 27px 46px;
+}
+
+/* --- Desktop: 4-across grid --- */
+@media (width >= 900px) {
+  .cards-services > ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

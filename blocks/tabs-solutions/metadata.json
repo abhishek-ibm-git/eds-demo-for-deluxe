@@ -1,0 +1,38 @@
+{
+  "variantName": "tabs-solutions",
+  "baseBlock": "tabs",
+  "version": "1.0.0",
+  "created": "2026-06-18T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.deluxe.com/",
+    "originPage": "Deluxe homepage - The Power of It All solutions slider",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "solutions",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "tab label + panel of solution items (heading list)",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "solution/capability category switchers",
+      "tabbed lists of features grouped under headings",
+      "product/solution explorers without case-study stats"
+    ],
+    "notSuitableFor": [
+      "case-study tabs with logos and statistics (use tabs-casestudy)",
+      "contact/location tabs (use tabs-contact)"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-06-18T00:00:00.000Z"
+  }
+}

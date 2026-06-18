@@ -1,0 +1,39 @@
+{
+  "variantName": "cards-news",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-06-18T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.deluxe.com/",
+    "originPage": "Deluxe homepage - News & Trusted Insights featured resources",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "insights",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image + heading + description + link per card",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "blog/news article cards with hero images and CTAs",
+      "featured resource listings",
+      "news & insights sections with a primary featured card and secondary list"
+    ],
+    "notSuitableFor": [
+      "person/author-attributed thought-leadership cards (use cards-insights)",
+      "statistics displays",
+      "icon-only product/feature cards"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-06-18T00:00:00.000Z"
+  }
+}

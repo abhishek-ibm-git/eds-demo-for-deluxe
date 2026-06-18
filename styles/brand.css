@@ -1,20 +1,26 @@
 :root {
-  --heading-font-family: "DM Sans", -apple-system, blinkmacsystemfont, "Segoe UI", sans-serif;
-  --body-font-family: "DM Sans", -apple-system, blinkmacsystemfont, "Segoe UI", sans-serif;
+  --heading-font-family: "Helvetica Neue", helvetica, arial, sans-serif;
+  --body-font-family: "Helvetica Neue", helvetica, arial, sans-serif;
   --background-color: #fff;
-  --text-color: #101828;
-  --link-color: #364153;
-  --link-hover-color: #101828;
-  --section-padding: 80px;
-  --nav-height: 64px;
-  --content-max-width: 1700px;
-  --heading-size-xxl: 72px;
-  --heading-size-xl: 40px;
-  --heading-size-l: 32px;
+  --text-color: #000f0c;
+  --link-color: #000f0c;
+  --link-hover-color: #d61120;
+  --section-padding: 64px;
+  --nav-height: 79px;
+  --content-max-width: 1320px;
+  --heading-size-xxl: 65px;
+  --heading-size-xl: 65px;
+  --heading-size-l: 24px;
   --heading-size-m: 20px;
-  --heading-size-s: 18px;
+  --heading-size-s: 20px;
   --heading-size-xs: 16px;
-  --color-grey: #f9fafb;
-  --color-dark: #3c3c46;
-  --color-muted: #6a7282;
+  --color-grey: #f4f4f4;
+  --color-dark: #000f0c;
+  --color-muted: #212529;
+
+  /* Deluxe brand */
+  --brand-red: #d61120;
+  --brand-red-hover: #b00e1a;
+  --stats-blue: #dbecee;
+  --cta-red: #d61120;
 }

@@ -46,6 +46,24 @@
     ]
   },
   {
+    "id": "cards-news",
+    "components": [
+      "card"
+    ]
+  },
+  {
+    "id": "cards-product",
+    "components": [
+      "card"
+    ]
+  },
+  {
+    "id": "cards-services",
+    "components": [
+      "card"
+    ]
+  },
+  {
     "id": "cards-stats",
     "components": [
       "card"
@@ -112,6 +130,12 @@
     "id": "tabs-casestudy",
     "components": [
       "tabs-casestudy-item"
+    ]
+  },
+  {
+    "id": "tabs-solutions",
+    "components": [
+      "tabs-solutions-item"
     ]
   },
   {

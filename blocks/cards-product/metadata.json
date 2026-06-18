@@ -1,0 +1,39 @@
+{
+  "variantName": "cards-product",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-06-18T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.deluxe.com/",
+    "originPage": "Deluxe homepage - featured products hero",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "product",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "icon + label + link per card",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "product and solution navigation cards",
+      "icon + label link grids",
+      "homepage feature/product selectors"
+    ],
+    "notSuitableFor": [
+      "article/blog cards with large hero images",
+      "statistics displays",
+      "text-heavy testimonial cards"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-06-18T00:00:00.000Z"
+  }
+}

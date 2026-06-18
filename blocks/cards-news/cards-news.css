@@ -1,0 +1,254 @@
+/* Block: cards-news — "News & Trusted Insights" featured resources */
+
+/* Values extracted from source computed styles (deluxe.com newsandupdatesgen3v1). */
+
+.cards-news > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Keep the real blog hero/thumbnail images visible (absolute deluxe.com URLs). */
+.cards-news picture img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.cards-news .cards-news-card-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Decorative SVG sprite icons (sprite.view.svg) 404 on this host — hide them. */
+.cards-news img[src*="sprite"] {
+  display: none;
+}
+
+.cards-news .cards-news-card-image {
+  line-height: 0;
+}
+
+.cards-news .cards-news-card-image p {
+  margin: 0;
+  line-height: 0;
+}
+
+/* Typography shared */
+.cards-news h3 {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: var(--heading-font-family);
+  line-height: 1.2;
+  text-transform: capitalize;
+  color: var(--text-color);
+  margin: 19px 0 15px;
+}
+
+.cards-news h3 a,
+.cards-news h5 a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.cards-news h5 {
+  font-size: 20px;
+  font-weight: 400;
+  font-family: var(--heading-font-family);
+  line-height: 1.28;
+  text-transform: capitalize;
+  color: #212529;
+  margin: 0 0 8px;
+}
+
+.cards-news .cards-news-card-body p {
+  font-size: 16px;
+  font-family: var(--body-font-family);
+  line-height: 22px;
+  color: var(--text-color);
+  margin: 0;
+}
+
+/* "Read More" plain link (secondary items + resources) */
+.cards-news .cards-news-card-body p a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* Red "Learn More" CTA button (featured card) */
+.cards-news .cards-news-card-body p.button-container {
+  margin-top: 22px;
+}
+
+main .cards-news a.button:any-link,
+main .cards-news a.button.primary:any-link {
+  display: inline-block;
+  background: var(--brand-red);
+  border: 2px solid var(--brand-red);
+  border-radius: 2px;
+  color: #fff;
+  padding: 13px 29px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.77px;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin: 0;
+}
+
+main .cards-news a.button:any-link:hover {
+  background: var(--brand-red-hover);
+  border-color: var(--brand-red-hover);
+}
+
+/* ---- Cards layout ---- */
+
+/* Featured card (first item): grey panel, image on top, vertical stack */
+.cards-news > ul > li:first-child {
+  background-color: var(--color-grey);
+  border-radius: 2px;
+  padding: 24px 24px 21px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cards-news > ul > li:first-child .cards-news-card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Thin divider under the featured title */
+.cards-news > ul > li:first-child .cards-news-card-body h3::after {
+  content: '';
+  display: block;
+  border-top: 1px solid #6b6b6b;
+  margin: 15px 0 0;
+}
+
+/* Secondary blog items (2nd & 3rd): thumbnail left + text right */
+.cards-news > ul > li:nth-child(2),
+.cards-news > ul > li:nth-child(3) {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.cards-news > ul > li:nth-child(2) .cards-news-card-image,
+.cards-news > ul > li:nth-child(3) .cards-news-card-image {
+  flex: 0 0 40%;
+  max-width: 290px;
+}
+
+.cards-news > ul > li:nth-child(2) .cards-news-card-image img,
+.cards-news > ul > li:nth-child(3) .cards-news-card-image img {
+  aspect-ratio: 4 / 3;
+}
+
+.cards-news > ul > li:nth-child(2) .cards-news-card-body,
+.cards-news > ul > li:nth-child(3) .cards-news-card-body {
+  flex: 1 1 auto;
+}
+
+/* Divider under each secondary title */
+.cards-news > ul > li:nth-child(2) .cards-news-card-body h5::after,
+.cards-news > ul > li:nth-child(3) .cards-news-card-body h5::after {
+  content: '';
+  display: block;
+  border-top: 1px solid #6b6b6b;
+  margin: 15px 0;
+}
+
+.cards-news > ul > li:nth-child(2) .cards-news-card-body p,
+.cards-news > ul > li:nth-child(3) .cards-news-card-body p {
+  margin: 0 0 16px;
+}
+
+/* Resource link items ("More Resources And News" pair) */
+.cards-news > ul > li:nth-child(n + 4) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  border-top: 1px solid #6b6b6b;
+  padding: 16px 0 5px;
+}
+
+.cards-news > ul > li:nth-child(n + 4) .cards-news-card-body p {
+  font-size: 14px;
+}
+
+.cards-news > ul > li:nth-child(n + 4) .cards-news-card-body h5 {
+  font-size: 24px;
+  margin: 0 0 5px;
+  color: var(--text-color);
+}
+
+/* The resource items' first cell holds a placeholder "null" image value — hide it. */
+.cards-news > ul > li:nth-child(n + 4) .cards-news-card-body:first-child {
+  display: none;
+}
+
+/* Last-paragraph margin reset for secondary items (kept after base p rules
+   to preserve ascending specificity order). */
+.cards-news > ul > li:nth-child(2) .cards-news-card-body p:last-child,
+.cards-news > ul > li:nth-child(3) .cards-news-card-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---- Desktop layout ---- */
+@media (width >= 900px) {
+  .cards-news h3 {
+    font-size: 30px;
+  }
+
+  .cards-news > ul {
+    display: grid;
+    grid-template-columns: minmax(0, 584fr) minmax(0, 690fr);
+    grid-template-rows: auto auto auto;
+    gap: 0 22px;
+  }
+
+  /* Featured card spans the full left column, all rows */
+  .cards-news > ul > li:first-child {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+  }
+
+  /* Secondary blog items stack in the right column */
+  .cards-news > ul > li:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+    padding-bottom: 28px;
+  }
+
+  .cards-news > ul > li:nth-child(3) {
+    grid-column: 2;
+    grid-row: 2;
+    padding-top: 28px;
+    border-top: 1px solid #6b6b6b;
+  }
+
+  /* Resource links sit below the secondary items in the right column */
+  .cards-news > ul > li:nth-child(4),
+  .cards-news > ul > li:nth-child(5) {
+    grid-column: 2;
+  }
+
+  .cards-news > ul > li:nth-child(4) {
+    grid-row: 3;
+    margin-top: 28px;
+  }
+
+  .cards-news > ul > li:nth-child(5) {
+    grid-row: 4;
+  }
+}

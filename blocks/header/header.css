@@ -16,7 +16,7 @@ header nav {
   align-items: center;
   gap: 0 24px;
   margin: auto;
-  max-width: 1700px;
+  max-width: 1320px;
   height: var(--nav-height);
   padding: 0 24px;
   font-family: var(--body-font-family);
@@ -36,7 +36,7 @@ header nav[aria-expanded='true'] {
     display: flex;
     justify-content: flex-start;
     gap: 0 40px;
-    max-width: 1700px;
+    max-width: 1320px;
     padding: 0 40px;
   }
 
@@ -59,7 +59,7 @@ header nav a:any-link {
 }
 
 header nav a:hover {
-  color: var(--text-color);
+  color: var(--brand-red);
 }
 
 /* hamburger */
@@ -153,8 +153,8 @@ header .nav-brand {
 }
 
 header nav .nav-brand img {
-  width: 31px;
-  height: 28px;
+  width: 130px;
+  height: auto;
 }
 
 /* sections */
@@ -303,24 +303,62 @@ header nav .nav-tools ul li {
   display: inline;
 }
 
-header nav .nav-tools ul li:not(:last-child)::after {
-  content: '/';
-  color: var(--color-muted);
+/* utility separator only between the first two (Support / Sign In) */
+header nav .nav-tools ul li:first-child::after {
+  content: '';
   margin: 0 6px;
-  font-size: 14px;
 }
 
 header nav .nav-tools a:any-link {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--link-color);
+}
+
+header nav .nav-tools a:hover {
+  color: var(--brand-red);
+}
+
+/* Buy Checks / Buy Promotional Products = brand-red pill CTAs (last two items) */
+header nav .nav-tools ul li:nth-last-child(-n + 2) {
+  margin-left: 10px;
+}
+
+header nav .nav-tools ul li:nth-last-child(-n + 2) a:any-link {
+  display: inline-block;
+  padding: 9px 18px;
+  border: 2px solid var(--brand-red);
+  border-radius: 24px;
+  background: var(--brand-red);
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+header nav .nav-tools ul li:nth-last-child(-n + 2) a:hover {
+  background: #fff;
+  color: var(--brand-red);
+}
+
+/* second CTA (Promotional) as outline variant */
+header nav .nav-tools ul li:last-child a:any-link {
+  background: transparent;
+  color: var(--brand-red);
+}
+
+header nav .nav-tools ul li:last-child a:hover {
+  background: var(--brand-red);
+  color: #fff;
 }
 
 /* breadcrumbs */
 header .breadcrumbs {
   display: none;
   margin: auto;
-  max-width: 1700px;
+  max-width: 1320px;
   height: var(--breadcrumbs-height);
   padding: 0 24px;
   font-size: var(--body-font-size-xs);
@@ -357,7 +395,7 @@ header .breadcrumbs ol li[aria-current] {
 @media (width >= 900px) {
   header .breadcrumbs {
     display: block;
-    max-width: 1700px;
+    max-width: 1320px;
     padding: 0 32px;
   }
 }

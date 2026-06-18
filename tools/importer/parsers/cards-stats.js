@@ -1,59 +1,80 @@
 /* eslint-disable */
 /* global WebImporter */
 /**
- * Parser for cards-stats
- * Base block: cards (container block)
- * Source: https://sei-demo-nextjs.vercel.app/
- * Selector: section.by-numbers .by-numbers-grid
- * Generated: 2026-05-13
+ * Parser for cards-stats (REUSED existing block).
+ * Base block: cards
+ * Source URL: https://www.deluxe.com/ (Statistics Slider — "Why Deluxe?")
+ * Generated: 2026-06-18.
  *
- * Source structure: .by-numbers-grid containing multiple .by-numbers-stat items,
- * each with .by-numbers-val, .by-numbers-label, and .by-numbers-short children.
+ * Model (blocks/cards-stats/_cards-stats.json): container block "cards-stats" with child "card".
+ *   card.image -> reference (no images in this source, image cell left empty)
+ *   card.text  -> richtext (large stat number + sub-title heading + description)
  *
- * Target: Cards container block - each stat becomes a row with [image, text] columns.
- * Stats have no image so image cell is empty; text cell contains the stat value,
- * label, and short description as richtext.
+ * Source DOM: each stat card is `.swiper-slide.slide-main-content` inside `.mySwiper2`:
+ *   <h2>$2T+</h2>
+ *   <div class="sub-title">
+ *     <span class="sub-title__heading">In Payments Processed</span>
+ *     <p class="sub-desc">On average, Deluxe processes ...</p>
+ *   </div>
+ * The thumbnail swiper (.mySwiper / .slide-content) duplicates this content and is intentionally ignored.
  */
 export default function parse(element, { document }) {
-  // Extract all stat card items from source
-  const statItems = element.querySelectorAll(':scope > .by-numbers-stat');
+  // Use only the main content slides; ignore the thumbnail .mySwiper slides (duplicate data).
+  let slides = Array.from(
+    element.querySelectorAll('.mySwiper2 .swiper-slide.slide-main-content'),
+  );
+  // Fallback for DOM variations where the main swiper class differs.
+  if (!slides.length) {
+    slides = Array.from(element.querySelectorAll('.swiper-slide.slide-main-content'));
+  }
 
   const cells = [];
 
-  statItems.forEach((stat) => {
-    const val = stat.querySelector('.by-numbers-val');
-    const label = stat.querySelector('.by-numbers-label');
-    const shortLabel = stat.querySelector('.by-numbers-short');
+  slides.forEach((slide) => {
+    // Large stat number (e.g. "$2T+").
+    const number = slide.querySelector(':scope > h2, :scope > h1, :scope > h3');
+    // Sub-title heading (e.g. "In Payments Processed").
+    const subHeading = slide.querySelector('.sub-title__heading, .sub-title > span');
+    // Description paragraph.
+    const desc = slide.querySelector('.sub-desc, .sub-title p, .sub-title > p');
 
-    // Build text cell content with field hint
-    // Container block: each row = one child item, columns = [image, text]
-    const textFrag = document.createDocumentFragment();
-    textFrag.appendChild(document.createComment(' field:text '));
+    // Skip empty slides.
+    if (!number && !subHeading && !desc) return;
 
-    // Create structured content: value as heading, label as paragraph, short as paragraph
-    if (val) {
-      const heading = document.createElement('h4');
-      heading.textContent = val.textContent.trim();
-      textFrag.appendChild(heading);
+    // Build the richtext content for the text field.
+    const textContent = [];
+    if (number) {
+      const numHeading = document.createElement('h2');
+      numHeading.textContent = number.textContent.trim();
+      textContent.push(numHeading);
     }
-    if (label) {
+    if (subHeading) {
+      const subTitle = document.createElement('h3');
+      subTitle.textContent = subHeading.textContent.trim();
+      textContent.push(subTitle);
+    }
+    if (desc) {
       const p = document.createElement('p');
-      p.textContent = label.textContent.trim();
-      textFrag.appendChild(p);
-    }
-    if (shortLabel) {
-      const p = document.createElement('p');
-      p.textContent = shortLabel.textContent.trim();
-      textFrag.appendChild(p);
+      p.textContent = desc.textContent.replace(/\s+/g, ' ').trim();
+      textContent.push(p);
     }
 
-    // Image cell is empty (no images in stats cards)
-    // Per hinting rules: empty cells do NOT require HTML comments
-    const imageCell = '';
+    // Image cell (empty — no image in this variant; reference field, no hint per hinting Rule 4).
+    const imageCell = document.createElement('div');
 
-    // Each row: [image, text] per container block model
-    cells.push([imageCell, textFrag]);
+    // Text cell with field hint.
+    const textCell = document.createElement('div');
+    textCell.appendChild(document.createComment(' field:text '));
+    textContent.forEach((node) => textCell.appendChild(node));
+
+    cells.push([imageCell, textCell]);
   });
+
+  // Empty-block guard: bail gracefully if no cards were extracted.
+  if (!cells.length) {
+    element.replaceWith(...element.childNodes);
+    return;
+  }
 
   const block = WebImporter.Blocks.createBlock(document, { name: 'cards-stats', cells });
   element.replaceWith(block);

@@ -1,0 +1,182 @@
+/* Block: tabs-solutions */
+
+/* Source: https://www.deluxe.com/ "Power of It All" solutions slider (div.solutionslidegen3v2) */
+
+/* Values from source computed styles; EDS tabs renders text tab buttons + content panel. */
+
+.tabs-solutions {
+  text-align: center;
+}
+
+/* Section intro (eyebrow + heading + description) centered above the tabs */
+.tabs-solutions-container .default-content-wrapper {
+  max-width: 860px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.tabs-solutions-container .default-content-wrapper > p:first-child {
+  margin: 0 0 16px;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 2.88px;
+  text-transform: uppercase;
+}
+
+.tabs-solutions-container .default-content-wrapper h2 {
+  margin: 0 0 20px;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-transform: capitalize;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.tabs-solutions-container .default-content-wrapper h2 + p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+/* --- Tab list (role=tablist) — circular selectors like the source slider --- */
+.tabs-solutions .tabs-solutions-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin: 0 auto 48px;
+  padding: 0;
+  max-width: 100%;
+}
+
+/* --- Tab buttons rendered as circles (source: 150px grey circles, active 220px red-ring).
+   Each tab stacks an icon above its label. --- */
+.tabs-solutions .tabs-solutions-list button.tabs-solutions-tab {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 150px;
+  height: 150px;
+  margin: 0;
+  padding: 16px;
+  border: 1px solid rgb(221 221 221);
+  border-radius: 50%;
+  background-color: #fff;
+  color: rgb(107 107 107);
+  font-family: var(--heading-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+  text-align: center;
+  text-transform: none;
+  white-space: normal;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, border-width 0.2s ease, width 0.2s ease, height 0.2s ease, font-size 0.2s ease;
+}
+
+.tabs-solutions .tabs-solutions-list button.tabs-solutions-tab p {
+  margin: 0;
+  color: inherit;
+  line-height: inherit;
+}
+
+/* Tab icon */
+.tabs-solutions .tabs-solutions-list button.tabs-solutions-tab img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.tabs-solutions .tabs-solutions-list button.tabs-solutions-tab:hover {
+  border-color: var(--brand-red);
+  color: var(--text-color);
+}
+
+/* Active / selected tab — large circle with 4px red ring (matches source active card) */
+.tabs-solutions .tabs-solutions-list button.tabs-solutions-tab[aria-selected='true'] {
+  width: 220px;
+  height: 220px;
+  border: 4px solid var(--brand-red);
+  background-color: #fff;
+  color: var(--text-color);
+  font-size: 24px;
+  font-weight: 400;
+  cursor: default;
+}
+
+.tabs-solutions .tabs-solutions-list button.tabs-solutions-tab[aria-selected='true'] img {
+  width: 64px;
+  height: 64px;
+}
+
+@media (width >= 900px) {
+  .tabs-solutions .tabs-solutions-list button.tabs-solutions-tab[aria-selected='true'] {
+    width: 280px;
+    height: 280px;
+  }
+}
+
+/* --- Tab panels --- */
+.tabs-solutions .tabs-solutions-panel {
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  max-width: 900px;
+  text-align: center;
+}
+
+.tabs-solutions .tabs-solutions-panel[aria-hidden='true'] {
+  display: none;
+}
+
+/* Panel heading (h3) — active title styling from source (24px / 400 / centered) */
+.tabs-solutions .tabs-solutions-panel h3 {
+  margin: 0 0 28px;
+  color: var(--text-color);
+  font-size: var(--heading-font-size-l);
+  font-weight: 400;
+  line-height: 1.25;
+  text-align: center;
+  text-transform: none;
+}
+
+/* --- Item grid (the ul of solution items) --- */
+.tabs-solutions .tabs-solutions-panel ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.tabs-solutions .tabs-solutions-panel ul > li {
+  margin: 0;
+  padding: 20px 16px;
+  border: 1px solid rgb(229 231 235);
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 6%);
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+}
+
+@media (width >= 900px) {
+  .tabs-solutions .tabs-solutions-list {
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .tabs-solutions .tabs-solutions-panel ul {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}

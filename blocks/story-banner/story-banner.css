@@ -1,0 +1,124 @@
+/* story-banner -- "Payments and Data" home story banner (deluxe.com)
+   Two-column layout: text left, looping globe video right.
+   Values extracted from source computed styles. */
+
+.story-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+@media (width >= 900px) {
+  .story-banner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+  }
+}
+
+/* --- Text column --- */
+.story-banner .story-banner-content {
+  flex: 1 1 48%;
+  max-width: 620px;
+  text-align: center;
+}
+
+@media (width >= 900px) {
+  .story-banner .story-banner-content {
+    position: relative;
+    padding-left: 40px;
+    text-align: left;
+  }
+
+  /* Red accent bar on the left of the content (source:
+     .home-story-banner__red-block-left -- 14px wide, full height, #d61120) */
+  .story-banner .story-banner-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 14px;
+    height: 100%;
+    background-color: var(--brand-red);
+  }
+}
+
+.story-banner .story-banner-eyebrow {
+  margin: 0 0 16px;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 2.88px;
+  text-transform: uppercase;
+}
+
+.story-banner .story-banner-content h2 {
+  margin: 0 0 20px;
+  color: var(--text-color);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.35;
+  text-transform: capitalize;
+}
+
+@media (width >= 900px) {
+  .story-banner .story-banner-content h2 {
+    font-size: 32px;
+    line-height: 46px;
+  }
+}
+
+.story-banner .story-banner-description {
+  margin: 0 0 28px;
+  color: var(--text-color);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* OUR STORY -- outline button (source: 2px solid grey/black, radius 2px,
+   uppercase). Override the global red-pill button rule explicitly so no red
+   border can bleed onto this block. */
+.story-banner .story-banner-content .button-container {
+  display: block;
+  margin: 0;
+}
+
+.story-banner .story-banner-content .button-container a.button:any-link {
+  display: inline-block;
+  padding: 13px 28px;
+  border: 2px solid var(--text-color);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--text-color);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.story-banner .story-banner-content .button-container a.button:any-link:hover {
+  background: var(--text-color);
+  border-color: var(--text-color);
+  color: #fff;
+}
+
+/* --- Media column (looping globe video) --- */
+.story-banner .story-banner-media {
+  flex: 1 1 48%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 560px;
+}
+
+.story-banner .story-banner-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}

@@ -1,20 +1,214 @@
+/* Deluxe footer -- dark multi-column link footer with newsletter promo and
+   a darker legal bar (logo, policies, social, address, copyright). */
+
 footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+  background-color: #212721;
+  color: #fff;
+  font-size: var(--body-font-size-s);
 }
 
+/* The footer.js wrapper holds the three regions (columns, newsletter, legal). */
 footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: var(--section-max-width);
+  padding: 56px 24px 0;
 }
 
 footer .footer p {
   margin: 0;
 }
 
+footer .footer a:any-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+footer .footer a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* ---- Top region: link columns (left) + newsletter (right) ---- */
+footer .footer .footer-columns {
+  flex: 1 1 100%;
+  padding-bottom: 40px;
+}
+
+footer .footer .footer-columns .default-content-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 24px;
+}
+
+footer .footer .footer-columns .default-content-wrapper > div p strong {
+  display: block;
+  margin-bottom: 16px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+footer .footer .footer-columns ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+footer .footer .footer-columns li {
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+/* ---- Newsletter promo ---- */
+footer .footer .footer-newsletter {
+  flex: 1 1 100%;
+  padding-bottom: 40px;
+}
+
+footer .footer .footer-newsletter .footer-newsletter-title {
+  margin-bottom: 16px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+footer .footer .footer-newsletter p:last-child {
+  margin-top: 16px;
+  color: rgb(255 255 255 / 70%);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* "Learn More" outlined button */
+footer .footer .footer-newsletter .button-container {
+  display: block;
+}
+
+footer .footer .footer-newsletter a.button:any-link {
+  display: block;
+  width: 100%;
+  padding: 14px 24px;
+  border: 1px solid #fff;
+  border-radius: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+footer .footer .footer-newsletter a.button:any-link:hover {
+  background: #fff;
+  color: #212721;
+}
+
+/* ---- Legal bar (full width, slightly darker) ---- */
+footer .footer .footer-legal {
+  flex: 1 1 100%;
+  margin: 0 -24px;
+  padding: 32px 24px;
+  background-color: #16190f;
+  text-align: center;
+}
+
+footer .footer .footer-legal .footer-logo img {
+  width: 120px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+footer .footer .footer-legal .footer-policies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 24px;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+footer .footer .footer-legal .footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+footer .footer .footer-legal .footer-social a {
+  display: inline-flex;
+}
+
+footer .footer .footer-legal .footer-social img {
+  width: 20px;
+  height: 20px;
+}
+
+footer .footer .footer-legal .footer-address,
+footer .footer .footer-legal .footer-copyright {
+  color: rgb(255 255 255 / 70%);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+@media (width >= 700px) {
+  footer .footer .footer-columns .default-content-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (width >= 900px) {
   footer .footer > div {
-    padding: 40px 32px 24px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  /* Columns take ~64% on the left, newsletter ~36% on the right */
+  footer .footer .footer-columns {
+    flex: 1 1 62%;
+    padding-right: 48px;
+  }
+
+  footer .footer .footer-newsletter {
+    flex: 1 1 30%;
+  }
+
+  footer .footer .footer-legal {
+    margin: 0 -32px;
+    padding: 32px 48px;
+  }
+
+  /* Top row of the legal bar: logo on the left, policies inline beside it */
+  footer .footer .footer-legal .footer-logo {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 40px;
+  }
+
+  footer .footer .footer-legal .footer-logo img {
+    margin-bottom: 0;
+  }
+
+  footer .footer .footer-legal .footer-policies {
+    display: inline-flex;
+    vertical-align: middle;
+    margin-bottom: 0;
+    font-size: 15px;
+  }
+
+  /* Separators between policy links (matches source's pipe dividers) */
+  footer .footer .footer-legal .footer-policies a:not(:last-child)::after {
+    content: '|';
+    margin-left: 24px;
+    color: rgb(255 255 255 / 40%);
+  }
+
+  footer .footer .footer-legal .footer-social {
+    margin-top: 24px;
   }
 }

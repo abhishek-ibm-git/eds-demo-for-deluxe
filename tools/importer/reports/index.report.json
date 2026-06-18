@@ -1,18 +1,16 @@
 {
   "status": "success",
-  "url": "https://sei-demo-nextjs.vercel.app/",
+  "url": "https://www.deluxe.com/",
   "path": "index",
-  "timestamp": "2026-05-13T15:31:17.356Z",
-  "title": "SEI | Financial value is created between the lines.",
+  "timestamp": "2026-06-18T16:53:11.414Z",
+  "title": "The Trusted Payments and Data Company - Deluxe",
   "template": "homepage",
   "blocks": [
-    "hero-video",
-    "carousel-spotlight",
-    "accordion-pillars",
-    "tabs-casestudy",
-    "tabs-casestudy",
+    "cards-product",
+    "story-banner",
+    "tabs-solutions",
     "cards-stats",
-    "cards-insights",
-    "form"
+    "cards-services",
+    "cards-news"
   ]
 }

@@ -1,7 +1,11 @@
 {
   "type": "xwalk",
-  "libraryUrl": "https://main--sta-xwalk-boilerplate--aemysites.aem.page/tools/sidekick/library.json",
+  "libraryUrl": "https://main--eds-demo-for-livedeluxe--abroy118.aem.page/tools/sidekick/library.json",
   "contentHostUrl": "author-p34454-e1943728.adobeaemcloud.com",
-  "previewOrg": "adobe-rnd",
-  "previewSite": "aem-block-collection-xwalk"
+  "previewOrg": "abroy118",
+  "previewSite": "aem-modernization-agent-startup",
+  "aemSitePath": "/content/aem-modernization-test",
+  "aemAssetsFolderPath": "/content/dam/aem-modernization-test",
+  "aemSiteName": "aem-modernization-test",
+  "aemSiteTitle": "AEM Mod Test"
 }

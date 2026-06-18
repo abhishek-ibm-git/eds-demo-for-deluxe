@@ -41,498 +41,565 @@ var CustomImportScript = (() => {
     default: () => import_homepage_default
   });
 
-  // tools/importer/parsers/hero-video.js
+  // tools/importer/parsers/cards-product.js
   function parse(element, { document }) {
-    const video = element.querySelector('video.hero-bg-img, video[class*="hero-bg"], video');
-    const image = element.querySelector('img[class*="hero-bg"], img[class*="background"], picture');
-    let mediaElement = null;
-    if (video) {
-      const videoSrc = video.getAttribute("src") || "";
-      if (videoSrc) {
-        const videoLink = document.createElement("a");
-        videoLink.href = videoSrc;
-        videoLink.textContent = videoSrc;
-        mediaElement = videoLink;
-      }
-    } else if (image) {
-      mediaElement = image;
-    }
-    const contentContainer = element.querySelector('.hero-content, [class*="hero-content"]');
-    const textFragment = document.createDocumentFragment();
-    if (contentContainer) {
-      const eyebrow = contentContainer.querySelector('.hero-eyebrow, [class*="eyebrow"]');
-      if (eyebrow) {
-        const eyebrowP = document.createElement("p");
-        eyebrowP.textContent = eyebrow.textContent.trim();
-        textFragment.appendChild(eyebrowP);
-      }
-      const headline = contentContainer.querySelector('h1, h2, .hero-headline, [class*="headline"]');
-      if (headline) {
-        const h1 = document.createElement("h1");
-        h1.textContent = headline.textContent.trim();
-        textFragment.appendChild(h1);
-      }
-      const subheadline = contentContainer.querySelector('p.hero-subheadline, p[class*="subheadline"], .hero-subheadline');
-      if (subheadline) {
-        const p = document.createElement("p");
-        p.textContent = subheadline.textContent.trim();
-        textFragment.appendChild(p);
-      }
-      const ctaLinks = contentContainer.querySelectorAll('a.hero-cta, a[class*="cta"], a[class*="button"]');
-      ctaLinks.forEach((link) => {
-        const a = document.createElement("a");
-        a.href = link.getAttribute("href") || "#";
-        a.textContent = link.textContent.trim();
-        const p = document.createElement("p");
-        p.appendChild(a);
-        textFragment.appendChild(p);
-      });
-    }
+    const cardsContainer = element.querySelector(
+      '.featured-products-hero-gen3v1__content__cards, [class*="content__cards"]'
+    );
+    const scope = cardsContainer || element;
+    const wrappers = Array.from(
+      scope.querySelectorAll(
+        '.featured-products-hero-gen3v1__content__cards__card-wrapper, [class*="cards__card-wrapper"]'
+      )
+    );
     const cells = [];
-    const imageCell = document.createDocumentFragment();
-    imageCell.appendChild(document.createComment(" field:image "));
-    if (mediaElement) {
-      imageCell.appendChild(mediaElement);
-    }
-    cells.push([imageCell]);
-    const textCell = document.createDocumentFragment();
-    textCell.appendChild(document.createComment(" field:text "));
-    textCell.appendChild(textFragment);
-    cells.push([textCell]);
-    const block = WebImporter.Blocks.createBlock(document, { name: "hero-video", cells });
-    element.replaceWith(block);
-  }
-
-  // tools/importer/parsers/carousel-spotlight.js
-  function parse2(element, { document }) {
-    const cards = element.querySelectorAll(".spotlight-card");
-    const cells = [];
-    cards.forEach((card) => {
-      const img = card.querySelector("img.spotlight-card-img");
-      const label = card.querySelector("span.spotlight-card-label");
-      const imageCell = document.createDocumentFragment();
-      imageCell.appendChild(document.createComment(" field:media_image "));
-      if (img) {
-        const picture = document.createElement("picture");
-        const imgEl = document.createElement("img");
-        imgEl.setAttribute("src", img.getAttribute("src"));
-        imgEl.setAttribute("alt", img.getAttribute("alt") || "");
-        picture.appendChild(imgEl);
-        imageCell.appendChild(picture);
+    wrappers.forEach((wrapper) => {
+      const card = wrapper.querySelector(
+        '.featured-products-hero-gen3v1__content__cards__card, [class*="cards__card"]'
+      ) || wrapper;
+      const content = card.querySelector(
+        '.featured-products-hero-gen3v1__content__cards__card__content, [class*="card__content"]'
+      ) || card;
+      const iconImg = content.querySelector(
+        'img:not(.external-link-icon):not([class*="external-link"]), svg:not([class*="external-link"])'
+      );
+      const labelEl = content.querySelector(
+        '.featured-products-hero-gen3v1__content__cards__card__label, [class*="card__label"]'
+      );
+      const labelText = labelEl ? labelEl.textContent.trim() : "";
+      const textCell = [];
+      const additionalLinks = Array.from(
+        card.querySelectorAll(
+          '.featured-products-hero-gen3v1__content__cards__card__additional-links a, [class*="additional-links"] a'
+        )
+      );
+      if (additionalLinks.length > 0) {
+        if (labelText) {
+          const heading = document.createElement("h3");
+          heading.textContent = labelText;
+          textCell.push(heading);
+        }
+        additionalLinks.forEach((a) => {
+          const clean = document.createElement("a");
+          clean.href = a.getAttribute("href") || "";
+          if (a.getAttribute("title")) clean.title = a.getAttribute("title");
+          clean.textContent = a.textContent.replace(/\s+/g, " ").trim();
+          textCell.push(clean);
+        });
+      } else {
+        const href = wrapper.tagName === "A" ? wrapper.getAttribute("href") : wrapper.querySelector("a") && wrapper.querySelector("a").getAttribute("href");
+        if (href && labelText) {
+          const link = document.createElement("a");
+          link.href = href;
+          link.textContent = labelText;
+          textCell.push(link);
+        } else if (labelText) {
+          const heading = document.createElement("h3");
+          heading.textContent = labelText;
+          textCell.push(heading);
+        }
       }
-      const contentCell = document.createDocumentFragment();
-      contentCell.appendChild(document.createComment(" field:content_text "));
-      if (label) {
-        const p = document.createElement("p");
-        p.textContent = label.textContent.trim();
-        contentCell.appendChild(p);
-      }
-      cells.push([imageCell, contentCell]);
-    });
-    const block = WebImporter.Blocks.createBlock(document, { name: "carousel-spotlight", cells });
-    element.replaceWith(block);
-  }
-
-  // tools/importer/parsers/accordion-pillars.js
-  function parse3(element, { document }) {
-    const pillarItems = element.querySelectorAll(".know-pillar");
-    const cells = [];
-    pillarItems.forEach((pillar) => {
-      const headEl = pillar.querySelector(".know-pillar-head");
-      const bodyEl = pillar.querySelector(".know-pillar-reveal .know-pillar-body, .know-pillar-reveal");
-      const summaryFrag = document.createDocumentFragment();
-      summaryFrag.appendChild(document.createComment(" field:summary "));
-      if (headEl) {
-        summaryFrag.appendChild(headEl);
+      if (!iconImg && textCell.length === 0) return;
+      let imageCellContent = "";
+      if (iconImg) {
+        const imgFrag = document.createDocumentFragment();
+        imgFrag.appendChild(document.createComment(" field:image "));
+        imgFrag.appendChild(iconImg);
+        imageCellContent = imgFrag;
       }
       const textFrag = document.createDocumentFragment();
       textFrag.appendChild(document.createComment(" field:text "));
-      if (bodyEl) {
-        textFrag.appendChild(bodyEl);
-      }
-      cells.push([summaryFrag, textFrag]);
+      textCell.forEach((node) => textFrag.appendChild(node));
+      cells.push([imageCellContent, textFrag]);
     });
-    const block = WebImporter.Blocks.createBlock(document, { name: "accordion-pillars", cells });
+    if (cells.length === 0) {
+      element.replaceWith(...element.childNodes);
+      return;
+    }
+    const block = WebImporter.Blocks.createBlock(document, { name: "cards-product", cells });
     element.replaceWith(block);
   }
 
-  // tools/importer/parsers/tabs-casestudy.js
-  function parse4(element, { document }) {
-    const parentSection = element.closest("section") || element.parentElement;
-    if (element.classList.contains("trusted-panel")) {
-      const empty = document.createTextNode("");
-      element.replaceWith(empty);
+  // tools/importer/parsers/story-banner.js
+  function parse2(element, { document }) {
+    var _a;
+    const root = element.querySelector(".home-story-banner") || element;
+    const label = root.querySelector(".home-story-banner__label");
+    const title = root.querySelector(".home-story-banner__title");
+    const body = root.querySelector(".home-story-banner__bodycopy");
+    const cta = root.querySelector(".home-story-banner__cta a");
+    const textFrag = document.createDocumentFragment();
+    if (label) {
+      const p = document.createElement("p");
+      p.textContent = label.textContent.trim();
+      textFrag.appendChild(p);
+    }
+    if (title) {
+      const h2 = document.createElement("h2");
+      h2.textContent = title.textContent.trim();
+      textFrag.appendChild(h2);
+    }
+    if (body) {
+      const p = document.createElement("p");
+      p.textContent = body.textContent.trim();
+      textFrag.appendChild(p);
+    }
+    if (cta) {
+      const p = document.createElement("p");
+      const a = document.createElement("a");
+      a.setAttribute("href", cta.getAttribute("href") || "#");
+      a.textContent = cta.textContent.trim();
+      p.appendChild(a);
+      textFrag.appendChild(p);
+    }
+    const source = root.querySelector(".home-story-banner__globe-content video source, video source, video");
+    let videoSrc = source ? source.getAttribute("src") || ((_a = source.querySelector("source")) == null ? void 0 : _a.getAttribute("src")) : null;
+    if (videoSrc && videoSrc.startsWith("/")) {
+      videoSrc = `https://www.deluxe.com${videoSrc}`;
+    }
+    const videoFrag = document.createDocumentFragment();
+    if (videoSrc) {
+      const a = document.createElement("a");
+      a.setAttribute("href", videoSrc);
+      a.textContent = videoSrc;
+      videoFrag.appendChild(a);
+    }
+    if (!label && !title && !body && !videoSrc) {
+      element.replaceWith(...element.childNodes);
       return;
     }
-    const tabsContainer = element;
-    const panelContainer = parentSection.querySelector(".trusted-panel");
-    const tabButtons = Array.from(tabsContainer.querySelectorAll("button.trusted-tab"));
-    const panelInner = panelContainer ? panelContainer.querySelector(".trusted-panel-inner") : null;
-    const activeIndex = tabButtons.findIndex((tab) => tab.classList.contains("trusted-tab--active"));
-    const activePanelIndex = activeIndex >= 0 ? activeIndex : 0;
+    const cells = [[textFrag], [videoFrag]];
+    const block = WebImporter.Blocks.createBlock(document, { name: "story-banner", cells });
+    element.replaceWith(block);
+  }
+
+  // tools/importer/parsers/tabs-solutions.js
+  function parse3(element, { document }) {
     const cells = [];
-    tabButtons.forEach((tab, index) => {
-      const tabImg = tab.querySelector("img.trusted-tab-img");
-      const tabTitle = tabImg ? tabImg.getAttribute("alt") || "" : "";
-      const titleCell = document.createDocumentFragment();
-      titleCell.appendChild(document.createComment(" field:title "));
-      const titleP = document.createElement("p");
-      titleP.textContent = tabTitle;
-      titleCell.appendChild(titleP);
-      const contentCell = document.createDocumentFragment();
-      if (index === activePanelIndex && panelInner) {
-        const headline = panelInner.querySelector("h3.trusted-panel-headline, h3, h2");
-        if (headline) {
-          contentCell.appendChild(document.createComment(" field:content_heading "));
-          const h3 = document.createElement("h3");
-          h3.textContent = headline.textContent.trim();
-          contentCell.appendChild(h3);
-        }
+    const withHint = (fieldName, node) => {
+      const frag = document.createDocumentFragment();
+      frag.appendChild(document.createComment(` field:${fieldName} `));
+      frag.appendChild(node);
+      return frag;
+    };
+    const buildContentCell = (itemTexts) => {
+      const cell = [];
+      const headings = itemTexts.filter((t) => t && t.trim());
+      if (headings.length === 0) return cell;
+      const headingEl = document.createElement("h3");
+      headingEl.textContent = headings[0];
+      cell.push(withHint("content_heading", headingEl));
+      if (headings.length > 1) {
+        const ul = document.createElement("ul");
+        headings.slice(1).forEach((t) => {
+          const li = document.createElement("li");
+          li.textContent = t;
+          ul.appendChild(li);
+        });
+        cell.push(withHint("content_richtext", ul));
       }
-      if (tabImg) {
-        contentCell.appendChild(document.createComment(" field:content_image "));
-        const imgP = document.createElement("p");
-        const imgClone = tabImg.cloneNode(true);
-        imgP.appendChild(imgClone);
-        contentCell.appendChild(imgP);
-      }
-      if (index === activePanelIndex && panelInner) {
-        const tag = panelInner.querySelector(".trusted-card-tag");
-        const body = panelInner.querySelector("p.trusted-card-body, .trusted-card-body");
-        const cta = panelInner.querySelector("a.trusted-cta, a");
-        const stats = panelInner.querySelectorAll(".trusted-stat");
-        const hasRich = tag || body || cta || stats.length > 0;
-        if (hasRich) {
-          contentCell.appendChild(document.createComment(" field:content_richtext "));
-          if (tag) {
-            const tagP = document.createElement("p");
-            tagP.textContent = tag.textContent.trim();
-            contentCell.appendChild(tagP);
-          }
-          if (body) {
-            contentCell.appendChild(body.cloneNode(true));
-          }
-          if (cta) {
-            const ctaClone = cta.cloneNode(true);
-            ctaClone.querySelectorAll('img[src^="data:"]').forEach((svg) => svg.remove());
-            const ctaP = document.createElement("p");
-            ctaP.appendChild(ctaClone);
-            contentCell.appendChild(ctaP);
-          }
-          stats.forEach((stat) => {
-            const val = stat.querySelector(".trusted-stat-val");
-            const label = stat.querySelector(".trusted-stat-label");
-            if (val || label) {
-              const statP = document.createElement("p");
-              if (val) {
-                const strong = document.createElement("strong");
-                strong.textContent = val.textContent.trim();
-                statP.appendChild(strong);
-              }
-              if (label) {
-                statP.appendChild(document.createTextNode(" " + label.textContent.trim()));
-              }
-              contentCell.appendChild(statP);
-            }
-          });
-        }
-      }
-      cells.push([titleCell, contentCell]);
-    });
-    const block = WebImporter.Blocks.createBlock(document, { name: "tabs-casestudy", cells });
+      return cell;
+    };
+    const mobileSlides = Array.from(
+      element.querySelectorAll(".solutions-slide-gen3-v2_mobile-view .swiper-slide")
+    );
+    if (mobileSlides.length) {
+      mobileSlides.forEach((slide) => {
+        const labelEl = slide.querySelector(".solutions-card h3, h3");
+        const label = labelEl ? labelEl.textContent.replace(/\s+/g, " ").trim() : "";
+        const itemTexts = Array.from(
+          slide.querySelectorAll(".solutions-card-content-lists > li h4, .solutions-card-content-lists > li")
+        ).map((el) => el.textContent.replace(/\s+/g, " ").trim()).filter((t) => t);
+        if (!label && itemTexts.length === 0) return;
+        const titleEl = document.createElement("p");
+        titleEl.textContent = label;
+        const titleCell = label ? [withHint("title", titleEl)] : [];
+        const contentCell = buildContentCell(itemTexts);
+        cells.push([titleCell, contentCell]);
+      });
+    } else {
+      const tabItems = Array.from(
+        element.querySelectorAll(".solutions-slide-gen3-v2_slider-item")
+      );
+      const panels = Array.from(
+        element.querySelectorAll(".solutions-slide-gen3-v2_content-container")
+      );
+      tabItems.forEach((tabItem, index) => {
+        const labelEl = tabItem.querySelector(".solutions-card h3, h3");
+        const label = labelEl ? labelEl.textContent.replace(/\s+/g, " ").trim() : "";
+        const dataTab = tabItem.getAttribute("data-tab");
+        let panel = dataTab ? element.querySelector(`#${CSS.escape(dataTab)}`) : null;
+        if (!panel) panel = panels[index] || null;
+        const itemTexts = panel ? Array.from(panel.querySelectorAll(".solutions-card-content h4, .solutions-card-content")).map((el) => el.textContent.replace(/\s+/g, " ").trim()).filter((t) => t) : [];
+        if (!label && itemTexts.length === 0) return;
+        const titleEl = document.createElement("p");
+        titleEl.textContent = label;
+        const titleCell = label ? [withHint("title", titleEl)] : [];
+        const contentCell = buildContentCell(itemTexts);
+        cells.push([titleCell, contentCell]);
+      });
+    }
+    if (cells.length === 0) {
+      element.replaceWith(...element.childNodes);
+      return;
+    }
+    const block = WebImporter.Blocks.createBlock(document, { name: "tabs-solutions", cells });
     element.replaceWith(block);
   }
 
   // tools/importer/parsers/cards-stats.js
-  function parse5(element, { document }) {
-    const statItems = element.querySelectorAll(":scope > .by-numbers-stat");
+  function parse4(element, { document }) {
+    let slides = Array.from(
+      element.querySelectorAll(".mySwiper2 .swiper-slide.slide-main-content")
+    );
+    if (!slides.length) {
+      slides = Array.from(element.querySelectorAll(".swiper-slide.slide-main-content"));
+    }
     const cells = [];
-    statItems.forEach((stat) => {
-      const val = stat.querySelector(".by-numbers-val");
-      const label = stat.querySelector(".by-numbers-label");
-      const shortLabel = stat.querySelector(".by-numbers-short");
-      const textFrag = document.createDocumentFragment();
-      textFrag.appendChild(document.createComment(" field:text "));
-      if (val) {
-        const heading = document.createElement("h4");
-        heading.textContent = val.textContent.trim();
-        textFrag.appendChild(heading);
+    slides.forEach((slide) => {
+      const number = slide.querySelector(":scope > h2, :scope > h1, :scope > h3");
+      const subHeading = slide.querySelector(".sub-title__heading, .sub-title > span");
+      const desc = slide.querySelector(".sub-desc, .sub-title p, .sub-title > p");
+      if (!number && !subHeading && !desc) return;
+      const textContent = [];
+      if (number) {
+        const numHeading = document.createElement("h2");
+        numHeading.textContent = number.textContent.trim();
+        textContent.push(numHeading);
       }
-      if (label) {
+      if (subHeading) {
+        const subTitle = document.createElement("h3");
+        subTitle.textContent = subHeading.textContent.trim();
+        textContent.push(subTitle);
+      }
+      if (desc) {
         const p = document.createElement("p");
-        p.textContent = label.textContent.trim();
-        textFrag.appendChild(p);
+        p.textContent = desc.textContent.replace(/\s+/g, " ").trim();
+        textContent.push(p);
       }
-      if (shortLabel) {
-        const p = document.createElement("p");
-        p.textContent = shortLabel.textContent.trim();
-        textFrag.appendChild(p);
-      }
-      const imageCell = "";
-      cells.push([imageCell, textFrag]);
+      const imageCell = document.createElement("div");
+      const textCell = document.createElement("div");
+      textCell.appendChild(document.createComment(" field:text "));
+      textContent.forEach((node) => textCell.appendChild(node));
+      cells.push([imageCell, textCell]);
     });
+    if (!cells.length) {
+      element.replaceWith(...element.childNodes);
+      return;
+    }
     const block = WebImporter.Blocks.createBlock(document, { name: "cards-stats", cells });
     element.replaceWith(block);
   }
 
-  // tools/importer/parsers/cards-insights.js
-  function parse6(element, { document }) {
-    const cards = element.querySelectorAll(".insight-bd-card");
+  // tools/importer/parsers/cards-services.js
+  function parse5(element, { document }) {
+    let cards = Array.from(
+      element.querySelectorAll(".swiper-slide.flashing-cards-variation-2__item")
+    );
+    if (!cards.length) {
+      cards = Array.from(element.querySelectorAll(".flashing-cards-variation-2__item"));
+    }
+    if (!cards.length) {
+      cards = Array.from(element.querySelectorAll(".flashing-cards-variation-2__content")).map((c) => c.closest(".swiper-slide, .flashing-cards-variation-2__item") || c);
+    }
     const cells = [];
     cards.forEach((card) => {
-      const img = card.querySelector(".insight-bd-image > img");
-      const imageCell = document.createDocumentFragment();
-      imageCell.appendChild(document.createComment(" field:image "));
+      const imageFrag = document.createDocumentFragment();
+      imageFrag.appendChild(document.createComment(" field:image "));
+      const img = card.querySelector("img");
+      const svg = card.querySelector(".flashing-cards-variation-2__icon-container svg, .icon-active svg, .icon-normal svg");
       if (img) {
-        imageCell.appendChild(img.cloneNode(true));
+        imageFrag.appendChild(img);
+      } else if (svg) {
+        imageFrag.appendChild(svg);
       }
-      const textCell = document.createDocumentFragment();
-      textCell.appendChild(document.createComment(" field:text "));
-      const badgeLabel = card.querySelector(".insight-bd-badge");
-      if (badgeLabel) {
-        const badgeText = badgeLabel.childNodes;
-        let labelText = "";
-        badgeText.forEach((node) => {
-          if (node.nodeType === 3) {
-            labelText += node.textContent.trim();
-          }
-        });
-        if (labelText) {
-          const badgeEl = document.createElement("p");
-          badgeEl.textContent = labelText;
-          textCell.appendChild(badgeEl);
-        }
-      }
-      const personName = card.querySelector(".insight-bd-name");
-      const personRole = card.querySelector(".insight-bd-role");
-      if (personName) {
-        const nameEl = document.createElement("p");
-        const strong = document.createElement("strong");
-        strong.textContent = personName.textContent.trim();
-        nameEl.appendChild(strong);
-        if (personRole) {
-          nameEl.appendChild(document.createElement("br"));
-          nameEl.appendChild(document.createTextNode(personRole.textContent.trim()));
-        }
-        textCell.appendChild(nameEl);
-      }
-      const category = card.querySelector(".insight-bd-category");
-      if (category) {
-        const catEl = document.createElement("p");
-        const em = document.createElement("em");
-        em.textContent = category.textContent.trim();
-        catEl.appendChild(em);
-        textCell.appendChild(catEl);
-      }
-      const headline = card.querySelector(".insight-bd-headline");
-      if (headline) {
-        const headingEl = document.createElement("h4");
-        headingEl.textContent = headline.textContent.trim();
-        textCell.appendChild(headingEl);
-      }
-      const excerpt = card.querySelector(".insight-bd-excerpt");
-      if (excerpt) {
-        const excerptEl = document.createElement("p");
-        excerptEl.textContent = excerpt.textContent.trim();
-        textCell.appendChild(excerptEl);
-      }
-      cells.push([imageCell, textCell]);
+      const content = card.querySelector(".flashing-cards-variation-2__content") || card;
+      const title = content.querySelector('h3, .flashing-cards-variation-2__title, [class*="title"]');
+      const description = content.querySelector('p, .flashing-cards-variation-2__bodycopy, [class*="bodycopy"]');
+      const textFrag = document.createDocumentFragment();
+      textFrag.appendChild(document.createComment(" field:text "));
+      if (title) textFrag.appendChild(title);
+      if (description) textFrag.appendChild(description);
+      if (!title && !description && !img && !svg) return;
+      cells.push([imageFrag, textFrag]);
     });
-    const block = WebImporter.Blocks.createBlock(document, { name: "cards-insights", cells });
+    if (!cells.length) {
+      element.replaceWith(...element.childNodes);
+      return;
+    }
+    const block = WebImporter.Blocks.createBlock(document, { name: "cards-services", cells });
     element.replaceWith(block);
   }
 
-  // tools/importer/parsers/form.js
-  function parse7(element, { document }) {
-    const label = element.querySelector(".stay-form-label, label");
-    const input = element.querySelector(".stay-form-input, input");
-    const button = element.querySelector(".stay-form-btn, button");
-    const legalText = element.querySelector(".stay-form-legal, p");
-    const referenceFrag = document.createDocumentFragment();
-    referenceFrag.appendChild(document.createComment(" field:reference "));
-    const referenceLink = document.createElement("a");
-    referenceLink.href = "/forms/subscribe";
-    referenceLink.textContent = "/forms/subscribe";
-    referenceFrag.appendChild(referenceLink);
-    const actionFrag = document.createDocumentFragment();
-    actionFrag.appendChild(document.createComment(" field:action "));
-    const actionLink = document.createElement("a");
-    actionLink.href = "/forms/subscribe/submit";
-    actionLink.textContent = "/forms/subscribe/submit";
-    actionFrag.appendChild(actionLink);
-    const cells = [
-      [referenceFrag],
-      [actionFrag]
-    ];
-    const block = WebImporter.Blocks.createBlock(document, { name: "form", cells });
+  // tools/importer/parsers/cards-news.js
+  function parse6(element, { document }) {
+    const cells = [];
+    const buildTextCell = (titleEl, descEl, linkEl) => {
+      const frag = document.createDocumentFragment();
+      frag.appendChild(document.createComment(" field:text "));
+      if (titleEl) {
+        const tag = /^H[1-6]$/.test(titleEl.tagName) ? titleEl.tagName.toLowerCase() : "h3";
+        const h = document.createElement(tag);
+        h.textContent = titleEl.textContent.replace(/\s+/g, " ").trim();
+        if (h.textContent) frag.appendChild(h);
+      }
+      if (descEl) {
+        const p = document.createElement("p");
+        p.textContent = descEl.textContent.replace(/\s+/g, " ").trim();
+        if (p.textContent) frag.appendChild(p);
+      }
+      if (linkEl) {
+        const href = linkEl.getAttribute("href");
+        const text = linkEl.textContent.replace(/\s+/g, " ").trim();
+        if (href && text) {
+          const p = document.createElement("p");
+          const a = document.createElement("a");
+          a.href = href;
+          a.textContent = text;
+          p.appendChild(a);
+          frag.appendChild(p);
+        }
+      }
+      return frag;
+    };
+    const buildImageCell = (img) => {
+      const frag = document.createDocumentFragment();
+      frag.appendChild(document.createComment(" field:image "));
+      if (img) frag.appendChild(img);
+      return frag;
+    };
+    const hasText = (frag) => frag.querySelector("h1,h2,h3,h4,h5,h6,p,a") !== null;
+    const featured = element.querySelector(".news-and-update-gen3-v1__contents-body");
+    if (featured) {
+      const fImg = featured.querySelector(".news-and-update-gen3-v1__contents-body__image img, img");
+      const fTitle = featured.querySelector(".news-and-update-gen3-v1__contents-body__title, h3");
+      const fDesc = featured.querySelector(".news-and-update-gen3-v1__contents-body__description, p");
+      const fLink = featured.querySelector(".news-and-update-gen3-v1__contents-body__buttons a, a.rd-deluxe-button-primary-red-long");
+      const text = buildTextCell(fTitle, fDesc, fLink);
+      if (hasText(text)) cells.push([buildImageCell(fImg), text]);
+    }
+    element.querySelectorAll(".news-and-update-gen3-v1__contents-list__item__row").forEach((item) => {
+      const iImg = item.querySelector(".news-and-update-gen3-v1__contents-list__item__image img, img");
+      const iTitle = item.querySelector(".news-and-update-gen3-v1__contents-list__item__details__title, h5");
+      const iDesc = item.querySelector(".news-and-update-gen3-v1__contents-list__item__details__description, p");
+      const iLink = item.querySelector(".news-and-update-gen3-v1__contents-list__item__details__link a, a[aria-label]");
+      const text = buildTextCell(iTitle, iDesc, iLink);
+      if (hasText(text)) cells.push([buildImageCell(iImg), text]);
+    });
+    element.querySelectorAll(".news-and-update-gen3-v1__contents__resources-news__item-wrapper").forEach((wrapper) => {
+      const rLink = wrapper.querySelector(":scope > a, a");
+      const rHeadline = wrapper.querySelector(".news-and-update-gen3-v1__contents__resources-news__item__headline");
+      const rDesc = wrapper.querySelector(".news-and-update-gen3-v1__contents__resources-news__item__description");
+      const text = buildTextCell(rHeadline, rDesc, rLink);
+      if (hasText(text)) cells.push([buildImageCell(null), text]);
+    });
+    if (cells.length === 0) {
+      element.replaceWith(...element.childNodes);
+      return;
+    }
+    const block = WebImporter.Blocks.createBlock(document, { name: "cards-news", cells });
     element.replaceWith(block);
   }
 
-  // tools/importer/transformers/sei-demo-cleanup.js
+  // tools/importer/transformers/deluxe-cleanup.js
   var TransformHook = { beforeTransform: "beforeTransform", afterTransform: "afterTransform" };
   function transform(hookName, element, payload) {
     if (hookName === TransformHook.beforeTransform) {
-      WebImporter.DOMUtils.remove(element, ["next-route-announcer", ".scroll-progress"]);
+      const doc = element.ownerDocument;
+      const main = element.querySelector("main.main_content") || element.querySelector("main");
+      if (main) {
+        Array.from(element.children).forEach((child) => {
+          if (child !== main && !main.contains(child)) child.remove();
+        });
+      }
+      WebImporter.DOMUtils.remove(element, [
+        ".xf-content-height",
+        ".deluxe-breadcrumb",
+        "script",
+        "style",
+        "noscript",
+        "iframe"
+      ]);
+      const promoSignals = element.querySelectorAll(
+        'img[src*="flashSaleModal"], img[src*="freeShip"], a[href*="PROMOCODE"]'
+      );
+      promoSignals.forEach((signal) => {
+        let node = signal;
+        for (let hop = 0; hop < 6 && node.parentElement && node.parentElement !== element; hop += 1) {
+          const cls = String(node.parentElement.className || "");
+          if (/modal|popup|flash|promo|offer/i.test(cls)) {
+            node = node.parentElement;
+            break;
+          }
+          node = node.parentElement;
+        }
+        if (node && node !== element) node.remove();
+      });
+      const PROMO_RE = /Free Shipping\s*&?(amp;)?\s*Handling on Business Check Orders/i;
+      element.querySelectorAll("p, span, div").forEach((el) => {
+        const text = (el.textContent || "").trim();
+        if (PROMO_RE.test(text) && text.length < 200 && el.querySelectorAll("*").length < 3) {
+          el.remove();
+        }
+      });
     }
     if (hookName === TransformHook.afterTransform) {
-      WebImporter.DOMUtils.remove(element, ["nav.nav", "footer.footer"]);
+      WebImporter.DOMUtils.remove(element, [
+        "iframe",
+        "link",
+        "noscript",
+        "script",
+        "style"
+      ]);
+      element.querySelectorAll("*").forEach((el) => {
+        el.removeAttribute("data-analytics-component-title");
+        el.removeAttribute("data-analytics-action");
+        el.removeAttribute("data-tab");
+        el.removeAttribute("data-action");
+      });
     }
   }
 
-  // tools/importer/transformers/sei-demo-sections.js
+  // tools/importer/transformers/deluxe-sections.js
   var TransformHook2 = { beforeTransform: "beforeTransform", afterTransform: "afterTransform" };
   function transform2(hookName, element, payload) {
-    if (hookName === TransformHook2.afterTransform) {
-      const { document } = payload;
-      const sections = payload.template && payload.template.sections;
-      if (!sections || sections.length < 2) return;
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        const sectionEl = element.querySelector(section.selector);
-        if (!sectionEl) continue;
-        if (section.style) {
-          const metaBlock = WebImporter.Blocks.createBlock(document, {
-            name: "Section Metadata",
-            cells: { style: section.style }
-          });
-          sectionEl.after(metaBlock);
-        }
-        if (i > 0) {
-          const hr = document.createElement("hr");
-          sectionEl.before(hr);
-        }
+    if (hookName !== TransformHook2.beforeTransform) return;
+    const sections = payload && payload.template && payload.template.sections;
+    if (!Array.isArray(sections) || sections.length < 2) return;
+    const doc = element.ownerDocument;
+    const promoPara = doc.createElement("p");
+    promoPara.append(doc.createTextNode("Free Shipping & Handling on Business Check Orders*"));
+    const promoLink = doc.createElement("a");
+    promoLink.setAttribute("href", "https://www.deluxe.com/shopdeluxe/cl/business-checks-banking-products/business-checks/_/N-wha0kw");
+    promoLink.textContent = "LEARN MORE";
+    promoPara.append(" ", promoLink);
+    const promoMeta = WebImporter.Blocks.createBlock(doc, {
+      name: "Section Metadata",
+      cells: { style: "promo-ribbon" }
+    });
+    element.prepend(doc.createElement("hr"));
+    element.prepend(promoMeta);
+    element.prepend(promoPara);
+    for (let i = sections.length - 1; i >= 0; i -= 1) {
+      const section = sections[i];
+      if (!section || !section.selector) continue;
+      const sectionEl = element.querySelector(section.selector);
+      if (!sectionEl) continue;
+      if (section.style) {
+        const metaBlock = WebImporter.Blocks.createBlock(doc, {
+          name: "Section Metadata",
+          cells: { style: section.style }
+        });
+        sectionEl.after(metaBlock);
+      }
+      if (i > 0) {
+        sectionEl.before(doc.createElement("hr"));
       }
     }
   }
 
   // tools/importer/import-homepage.js
-  var parsers = {
-    "hero-video": parse,
-    "carousel-spotlight": parse2,
-    "accordion-pillars": parse3,
-    "tabs-casestudy": parse4,
-    "cards-stats": parse5,
-    "cards-insights": parse6,
-    "form": parse7
-  };
   var PAGE_TEMPLATE = {
     name: "homepage",
-    description: "SEI Demo homepage with hero, content sections, and call-to-action areas",
+    description: "Deluxe homepage - AEM-authored page with featured products hero, story banner, solutions slider, statistics slider, flash cards, news & updates, and CTA sections",
     urls: [
-      "https://sei-demo-nextjs.vercel.app/"
+      "https://www.deluxe.com/"
     ],
     blocks: [
       {
-        name: "hero-video",
-        instances: ["section.hero"]
+        name: "cards-product",
+        instances: ["div.featuredproductsherogen3v1"]
       },
       {
-        name: "carousel-spotlight",
-        instances: ["section.spotlight .spotlight-carousel-outer"]
+        name: "story-banner",
+        instances: ["div.homestorybannergen3v1"]
       },
       {
-        name: "accordion-pillars",
-        instances: ["section.know-sei .know-sei-grid"]
-      },
-      {
-        name: "tabs-casestudy",
-        instances: ["section.trusted .trusted-tabs", "section.trusted .trusted-panel"]
+        name: "tabs-solutions",
+        instances: ["div.solutionslidegen3v2"]
       },
       {
         name: "cards-stats",
-        instances: ["section.by-numbers .by-numbers-grid"]
+        instances: ["div.statisticslidergen3v1"]
       },
       {
-        name: "cards-insights",
-        instances: ["section.insights-bd .insights-bd-grid"]
+        name: "cards-services",
+        instances: ["div.flashcardsvariation2gen3v1"]
       },
       {
-        name: "form",
-        instances: ["section.stay-connected .stay-form"]
+        name: "cards-news",
+        instances: ["div.newsandupdatesgen3v1"]
       }
     ],
     sections: [
       {
-        id: "section-1",
-        name: "Hero",
-        selector: "section.hero",
+        id: "rc1",
+        name: "Featured Products Hero",
+        selector: "div.featuredproductsherogen3v1",
         style: null,
-        blocks: ["hero-video"],
+        blocks: ["cards-product"],
+        defaultContent: [
+          "div.featured-products-hero-gen3v1__content__title",
+          "div.featured-products-hero-gen3v1__content__description"
+        ]
+      },
+      {
+        id: "rc2",
+        name: "Story Banner",
+        selector: "div.homestorybannergen3v1",
+        style: null,
+        blocks: ["story-banner"],
         defaultContent: []
       },
       {
-        id: "section-2",
-        name: "Executive Spotlight",
-        selector: "section.spotlight",
+        id: "rc3",
+        name: "Solutions Slider",
+        selector: "div.solutionslidegen3v2",
         style: null,
-        blocks: ["carousel-spotlight"],
-        defaultContent: [
-          "section.spotlight .section-eyebrow",
-          "section.spotlight .spotlight-headline",
-          "section.spotlight .spotlight-body"
-        ]
+        blocks: ["tabs-solutions"],
+        defaultContent: ["div.solutions-slide-gen3-v2_head-content"]
       },
       {
-        id: "section-3",
-        name: "Get to Know SEI",
-        selector: "section.know-sei",
-        style: null,
-        blocks: ["accordion-pillars"],
-        defaultContent: [
-          "section.know-sei .section-eyebrow",
-          "section.know-sei .section-headline",
-          "section.know-sei .section-body"
-        ]
-      },
-      {
-        id: "section-4",
-        name: "Proof in Practice",
-        selector: "section.trusted",
-        style: "grey",
-        blocks: ["tabs-casestudy"],
-        defaultContent: [
-          "section.trusted .section-eyebrow",
-          "section.trusted .section-headline",
-          "section.trusted .trusted-header-sub"
-        ]
-      },
-      {
-        id: "section-5",
-        name: "Scale and Impact",
-        selector: "section.by-numbers",
-        style: null,
+        id: "rc4",
+        name: "Statistics Slider",
+        selector: "div.statisticslidergen3v1",
+        style: "stats-blue",
         blocks: ["cards-stats"],
-        defaultContent: [
-          "section.by-numbers .by-numbers-eyebrow",
-          "section.by-numbers .by-numbers-headline",
-          "section.by-numbers .by-numbers-sub"
-        ]
+        defaultContent: ["div.redesign-about-us__slider-title"]
       },
       {
-        id: "section-6",
-        name: "Expert Insights",
-        selector: "section.insights-bd",
+        id: "rc5",
+        name: "Proven Success Flash Cards",
+        selector: "div.flashcardsvariation2gen3v1",
         style: null,
-        blocks: ["cards-insights"],
-        defaultContent: [
-          "section.insights-bd .section-eyebrow",
-          "section.insights-bd .insights-bd-headline",
-          "section.insights-bd .insights-bd-all-cta"
-        ]
+        blocks: ["cards-services"],
+        defaultContent: ["div.flashing-cards-variation-2__title-container"]
       },
       {
-        id: "section-7",
-        name: "Stay Connected",
-        selector: "section.stay-connected",
-        style: "dark",
-        blocks: ["form"],
-        defaultContent: [
-          "section.stay-connected .stay-eyebrow",
-          "section.stay-connected .stay-headline",
-          "section.stay-connected .stay-body"
-        ]
+        id: "rc6",
+        name: "News and Insights",
+        selector: "div.newsandupdatesgen3v1",
+        style: null,
+        blocks: ["cards-news"],
+        defaultContent: []
+      },
+      {
+        id: "rc7",
+        name: "Get Started CTA",
+        selector: "div.postctagen3v1",
+        style: "cta-red",
+        blocks: [],
+        defaultContent: ["div.postctagen3v1"]
       }
     ]
+  };
+  var parsers = {
+    "cards-product": parse,
+    "story-banner": parse2,
+    "tabs-solutions": parse3,
+    "cards-stats": parse4,
+    "cards-services": parse5,
+    "cards-news": parse6
   };
   var transformers = [
     transform,
@@ -578,6 +645,7 @@ var CustomImportScript = (() => {
       executeTransformers("beforeTransform", main, payload);
       const pageBlocks = findBlocksOnPage(document, PAGE_TEMPLATE);
       pageBlocks.forEach((block) => {
+        if (!block.element.parentNode) return;
         const parser = parsers[block.name];
         if (parser) {
           try {

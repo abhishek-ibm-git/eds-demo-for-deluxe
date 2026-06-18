@@ -1,0 +1,39 @@
+{
+  "variantName": "cards-services",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-06-18T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.deluxe.com/",
+    "originPage": "Deluxe homepage - Proven Success flash cards",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "feature",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "icon + title + description per card",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "value-add service highlights",
+      "icon + title + description feature cards",
+      "capability/support showcase grids"
+    ],
+    "notSuitableFor": [
+      "article/blog cards with hero images and CTAs",
+      "statistics displays",
+      "product navigation cards with links"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-06-18T00:00:00.000Z"
+  }
+}
