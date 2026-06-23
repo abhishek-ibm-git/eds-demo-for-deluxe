@@ -1,6 +1,6 @@
 mountpoints:
   /:
-    url: "https://author-p34454-e1943728.adobeaemcloud.com/bin/franklin.delivery/abhisheksaini2ibm-bit/eds-demo-for-deluxe/main"
+    url: "https://author-p34454-e1943728.adobeaemcloud.com/bin/franklin.delivery/abhishek-ibm-git/eds-demo-for-deluxe/main"
     type: "markup"
     suffix: ".html"
    
