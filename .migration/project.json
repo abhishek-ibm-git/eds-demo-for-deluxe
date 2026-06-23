@@ -2,8 +2,8 @@
   "type": "xwalk",
   "sites": {
     "eds-demo-for-deluxe": {
-      "libraryUrl": "https://main--eds-demo-for-livedeluxe--abhisheksaini2ibm-bit.aem.page/tools/sidekick/library.json",
-      "previewOrg": "abhisheksaini2ibm-bit",
+      "libraryUrl": "https://main--eds-demo-for-deluxe--abhishek-ibm-git.aem.page/tools/sidekick/library.json",
+      "previewOrg": "abhishek-ibm-git",
       "previewSite": "eds-demo-for-deluxe",
       "contentHostUrl": "author-p34454-e1943728.adobeaemcloud.com",
       "aemSitePath": "/content/eds-demo-for-deluxe",
