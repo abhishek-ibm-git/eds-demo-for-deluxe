@@ -1,0 +1,75 @@
+/*
+ * Cards Tiles variant
+ * Linked navigation tiles: image + heading link + body paragraph.
+ * Used for the About "Get to Know Us" product-listing card grid (4-up).
+ */
+
+.cards-tiles > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.cards-tiles > ul > li {
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.cards-tiles .cards-tiles-card-image {
+  line-height: 0;
+  position: relative;
+}
+
+.cards-tiles .cards-tiles-card-image a {
+  display: block;
+}
+
+/* Tile images */
+.cards-tiles > ul > li img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+}
+
+.cards-tiles .cards-tiles-card-body {
+  padding: 16px 0 0;
+}
+
+.cards-tiles .cards-tiles-card-body h3 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.cards-tiles .cards-tiles-card-body h3 a:any-link {
+  color: #000f0c;
+  text-decoration: none;
+}
+
+.cards-tiles .cards-tiles-card-body h3 a:hover {
+  text-decoration: underline;
+}
+
+.cards-tiles .cards-tiles-card-body p {
+  font-size: 16px;
+  line-height: 22px;
+  color: #6b6b6b;
+  margin: 0;
+}
+
+@media (width >= 600px) {
+  .cards-tiles > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .cards-tiles > ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

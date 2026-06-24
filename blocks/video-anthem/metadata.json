@@ -1,0 +1,38 @@
+{
+  "variantName": "video-anthem",
+  "baseBlock": "video",
+  "version": "1.0.0",
+  "created": "2026-06-24T10:16:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.deluxe.com/about/",
+    "originPage": "Deluxe About Us - Overview brand anthem video",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "video",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "poster image + play button + (Wistia/YouTube/Vimeo) video link",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "single embedded marketing/anthem video with poster thumbnail",
+      "Wistia/YouTube/Vimeo player with click-to-play",
+      "video that sits inside a text-and-media layout cell"
+    ],
+    "notSuitableFor": [
+      "looping muted background video (use a background-video columns/hero variant)",
+      "video carousels/galleries (use carousel-spotlight)"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/about"],
+    "reuseCount": 1,
+    "lastUsed": "2026-06-24T10:16:00.000Z"
+  }
+}

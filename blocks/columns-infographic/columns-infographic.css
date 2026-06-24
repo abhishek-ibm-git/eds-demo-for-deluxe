@@ -1,0 +1,78 @@
+/*
+ * Columns Infographic variant
+ * Two-column static image (infographic) + copy layout.
+ * Used for the About "Deluxe+" media suite section.
+ */
+
+.columns-infographic-container .columns-infographic-wrapper {
+  max-width: 1200px;
+}
+
+.columns-infographic > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+.columns-infographic img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.columns-infographic > div > div {
+  order: 1;
+  padding: 0;
+}
+
+.columns-infographic > div > .columns-infographic-img-col {
+  order: 0;
+  padding: 0;
+  line-height: 0;
+}
+
+.columns-infographic p {
+  font-size: 16px;
+  line-height: 22px;
+  color: #000f0c;
+  margin: 0 0 16px;
+}
+
+/* Small "Deluxe+" eyebrow title */
+.columns-infographic h2 + p,
+.columns-infographic .small-title {
+  text-transform: uppercase;
+}
+
+.columns-infographic h2 {
+  color: #000f0c;
+  margin: 0 0 16px;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 46px;
+}
+
+/* Red "+" accent for Deluxe+ branding */
+.columns-infographic .red-plus {
+  color: #d61120;
+}
+
+@media (width >= 900px) {
+  .columns-infographic > div {
+    flex-direction: row;
+    align-items: center;
+    gap: 56px;
+  }
+
+  .columns-infographic > div > div {
+    flex: 1;
+    order: unset;
+  }
+
+  .columns-infographic > div > .columns-infographic-img-col {
+    flex: 1;
+    order: unset;
+  }
+}

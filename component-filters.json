@@ -40,6 +40,12 @@
     ]
   },
   {
+    "id": "cards-awards",
+    "components": [
+      "card"
+    ]
+  },
+  {
     "id": "cards-insights",
     "components": [
       "card"
@@ -70,6 +76,12 @@
     ]
   },
   {
+    "id": "cards-tiles",
+    "components": [
+      "card"
+    ]
+  },
+  {
     "id": "cards",
     "components": [
       "card"
@@ -88,6 +100,36 @@
     ]
   },
   {
+    "id": "columns-infographic",
+    "components": [
+      "column"
+    ]
+  },
+  {
+    "id": "column",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title"
+    ]
+  },
+  {
+    "id": "columns-media",
+    "components": [
+      "column"
+    ]
+  },
+  {
+    "id": "column",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title"
+    ]
+  },
+  {
     "id": "columns",
     "components": [
       "column"
@@ -100,6 +142,12 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "interior-nav",
+    "components": [
+      "interior-nav-link"
     ]
   },
   {
@@ -143,6 +191,10 @@
     "components": [
       "tabs-item"
     ]
+  },
+  {
+    "id": "video-anthem",
+    "components": []
   },
   {
     "id": "video",

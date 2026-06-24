@@ -1,0 +1,39 @@
+{
+  "variantName": "cards-awards",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-06-24T10:16:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.deluxe.com/about/",
+    "originPage": "Deluxe About Us - Proven Success / Recognition zoom cards",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "recognition",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "award badge image + short caption per card",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "awards / recognition / accolade badge grids",
+      "trust-signal badge rows with captions",
+      "press/industry recognition displays"
+    ],
+    "notSuitableFor": [
+      "product navigation cards with links (use cards-product / cards-tiles)",
+      "news/article cards with hero images (use cards-news)",
+      "icon + title + description feature cards (use cards-services)"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/about"],
+    "reuseCount": 1,
+    "lastUsed": "2026-06-24T10:16:00.000Z"
+  }
+}

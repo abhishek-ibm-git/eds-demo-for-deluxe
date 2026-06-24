@@ -1,0 +1,38 @@
+{
+  "variantName": "columns-media",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-06-24T10:16:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.deluxe.com/about/",
+    "originPage": "Deluxe About Us - Overview text-block-with-media",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "overview",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "text (eyebrow + heading + subheading + body) + media/video side by side",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "text-and-media overview sections (copy on one side, video/media on the other)",
+      "two-column intros where the media cell holds a video block",
+      "light side-by-side editorial layouts"
+    ],
+    "notSuitableFor": [
+      "static image + copy product/infographic layouts (use columns-infographic)",
+      "looping background-video banners (use story-banner)"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/about"],
+    "reuseCount": 1,
+    "lastUsed": "2026-06-24T10:16:00.000Z"
+  }
+}

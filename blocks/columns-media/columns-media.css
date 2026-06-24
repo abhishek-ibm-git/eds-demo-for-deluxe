@@ -1,0 +1,128 @@
+/*
+ * Columns Media variant
+ * Two-column text-and-media layout (text + video/media side by side).
+ * Used for the About "Overview" text-block-with-media section.
+ */
+
+.columns-media-container .columns-media-wrapper {
+  max-width: 1200px;
+}
+
+.columns-media > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.columns-media img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.columns-media > div > div {
+  order: 1;
+  padding: 0;
+}
+
+.columns-media > div > .columns-media-img-col {
+  order: 0;
+  padding: 0;
+  line-height: 0;
+}
+
+/* Eyebrow / label: first paragraph treated as uppercase eyebrow */
+.columns-media .columns-media-label,
+.columns-media p.eyebrow {
+  color: #000f0c;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 2.88px;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+
+.columns-media h2 {
+  color: #000f0c;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 46px;
+  margin: 0 0 16px;
+}
+
+.columns-media h3,
+.columns-media h4 {
+  color: #000f0c;
+  margin-top: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.columns-media p {
+  font-size: 16px;
+  line-height: 22px;
+  color: #000f0c;
+}
+
+/* Video column: poster + play button */
+.columns-media .columns-media-video {
+  position: relative;
+  cursor: pointer;
+  line-height: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.columns-media .columns-media-video img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.columns-media .columns-media-video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: rgb(0 0 0 / 60%);
+  cursor: pointer;
+}
+
+.columns-media .columns-media-video-play::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  transform: translate(-50%, -50%);
+  border-style: solid;
+  border-width: 14px 0 14px 24px;
+  border-color: transparent transparent transparent #fff;
+}
+
+.columns-media .columns-media-video-play:hover {
+  background-color: rgb(0 0 0 / 80%);
+}
+
+@media (width >= 900px) {
+  .columns-media > div {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 48px;
+  }
+
+  .columns-media > div > div {
+    flex: 1;
+    order: unset;
+  }
+
+  .columns-media > div > .columns-media-img-col {
+    flex: 1;
+    order: unset;
+  }
+}

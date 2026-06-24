@@ -1,0 +1,39 @@
+{
+  "variantName": "interior-nav",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-06-24T10:16:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.deluxe.com/about/",
+    "originPage": "Deluxe About Us - interior anchor navigation",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "navigation",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "list of in-page anchor links rendered as a sticky horizontal bar with active-state on scroll",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "in-page jump/anchor navigation bars",
+      "sticky section navigation on long interior pages",
+      "on-page table-of-contents style link bars"
+    ],
+    "notSuitableFor": [
+      "site header/global navigation (handled by header block)",
+      "tabbed content panels (use tabs)",
+      "two-column content layouts (use columns variants)"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/about"],
+    "reuseCount": 1,
+    "lastUsed": "2026-06-24T10:16:00.000Z"
+  }
+}

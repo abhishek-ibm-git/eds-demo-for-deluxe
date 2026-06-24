@@ -1,0 +1,108 @@
+/*
+ * Hero About variant
+ * Light, full-width hero with side-by-side decorative image (left) and
+ * content (eyebrow + H1 + description) (right).
+ * Matches deluxe.com/about hero (herofullwidth-sidebyside-image-gen3-v1).
+ */
+
+.hero-about-container .hero-about-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.hero-about {
+  position: relative;
+  background-color: #fff;
+  padding: 48px 24px;
+  overflow: hidden;
+}
+
+.hero-about > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Decorative side image */
+.hero-about > div > .hero-about-image {
+  order: 0;
+  width: 100%;
+  line-height: 0;
+}
+
+.hero-about > div > .hero-about-image img,
+.hero-about > div > .hero-about-image picture {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Content column */
+.hero-about > div > div:last-child {
+  order: 1;
+  width: 100%;
+  text-align: center;
+}
+
+.hero-about p {
+  color: #000f0c;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 300;
+}
+
+.hero-about h1 p {
+  margin: 0;
+  letter-spacing: normal;
+  text-transform: none;
+  font: inherit;
+  color: inherit;
+}
+
+/* Eyebrow (first paragraph rendered before the H1) */
+.hero-about p:first-child {
+  color: #000f0c;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 2.88px;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+
+.hero-about h1 {
+  color: #000f0c;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 48px;
+  margin: 0 0 16px;
+}
+
+@media (width >= 900px) {
+  .hero-about {
+    padding: 72px 32px;
+  }
+
+  .hero-about > div {
+    flex-direction: row;
+    gap: 48px;
+  }
+
+  .hero-about > div > .hero-about-image {
+    flex: 1;
+    order: 0;
+  }
+
+  .hero-about > div > div:last-child {
+    flex: 1;
+    order: 1;
+    text-align: left;
+  }
+
+  .hero-about h1 {
+    font-size: 48px;
+    line-height: 56px;
+  }
+}
