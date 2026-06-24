@@ -2,14 +2,15 @@
   "type": "xwalk",
   "sites": {
     "eds-demo-for-deluxe": {
-      "libraryUrl": "https://main--eds-demo-for-deluxe--abhishek-ibm-git.aem.page/tools/sidekick/library.json",
+      "libraryUrl": "https://main--eds-demo-for-deluxe--abhishek-ibm-git.aem.page",
       "previewOrg": "abhishek-ibm-git",
       "previewSite": "eds-demo-for-deluxe",
       "contentHostUrl": "author-p34454-e1943728.adobeaemcloud.com",
       "aemSitePath": "/content/eds-demo-for-deluxe",
       "aemAssetsFolderPath": "/content/dam/eds-demo-for-deluxe",
       "aemSiteName": "eds-demo-for-deluxe",
-      "aemSiteTitle": "eds-demo-for-deluxe"
+      "aemSiteTitle": "eds-demo-for-deluxe",
+      "baseUrl": "https://main--eds-demo-for-deluxe--abhishek-ibm-git.aem.page"
     }
   }
 }
