@@ -146,6 +146,131 @@
           ]
         }
       ]
+    },
+    {
+      "name": "about-page",
+      "urls": [
+        "https://www.deluxe.com/about/"
+      ],
+      "representativeUrl": "https://www.deluxe.com/about/",
+      "coverageGaps": [],
+      "description": "Deluxe About Us page - AEM-authored page with full-width hero (side-by-side image), interior anchor navigation, text-block-with-media overview + video, media suite (Deluxe+ infographic + copy), who-we-serve flash cards carousel, recognition zoom cards, and a get-to-know product-listing card grid",
+      "blocks": [
+        {
+          "name": "hero-about",
+          "instances": [
+            "div.heroimagegen3v1"
+          ]
+        },
+        {
+          "name": "interior-nav",
+          "instances": [
+            "div.interiornavigationgen3v1"
+          ]
+        },
+        {
+          "name": "columns-media",
+          "instances": [
+            "div.textblockwithmediagen3v1"
+          ]
+        },
+        {
+          "name": "columns-infographic",
+          "instances": [
+            "div.mediasuitegen3v1"
+          ]
+        },
+        {
+          "name": "cards-services",
+          "instances": [
+            "div.flashcardvariation1gen3v1"
+          ]
+        },
+        {
+          "name": "cards-awards",
+          "instances": [
+            "div.zoomcardsgen3v1"
+          ]
+        },
+        {
+          "name": "cards-tiles",
+          "instances": [
+            "div.product-listing"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "rc1",
+          "name": "Hero",
+          "selector": "div.heroimagegen3v1",
+          "style": null,
+          "blocks": [
+            "hero-about"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc2",
+          "name": "Interior Navigation",
+          "selector": "div.interiornavigationgen3v1",
+          "style": null,
+          "blocks": [
+            "interior-nav"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc3",
+          "name": "Overview",
+          "selector": "div.textblockwithmediagen3v1",
+          "style": null,
+          "blocks": [
+            "columns-media"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc4",
+          "name": "Deluxe Plus",
+          "selector": "div.mediasuitegen3v1",
+          "style": null,
+          "blocks": [
+            "columns-infographic"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc5",
+          "name": "Who We Serve",
+          "selector": "div.flashcardvariation1gen3v1",
+          "style": null,
+          "blocks": [
+            "cards-services"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc6",
+          "name": "Recognition",
+          "selector": "div.zoomcardsgen3v1",
+          "style": null,
+          "blocks": [
+            "cards-awards"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc7",
+          "name": "Get To Know Us",
+          "selector": "div.product-listing",
+          "style": null,
+          "blocks": [
+            "cards-tiles"
+          ],
+          "defaultContent": []
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,38 @@
+{
+  "variantName": "columns-infographic",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-06-24T10:16:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.deluxe.com/about/",
+    "originPage": "Deluxe About Us - Deluxe+ media suite",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "infographic",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "static infographic image + (small title + heading + multiple paragraphs)",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "image + copy product/platform explainer sections",
+      "infographic-led two-column layouts",
+      "Deluxe+ branded copy with red-plus accent"
+    ],
+    "notSuitableFor": [
+      "text + video media layouts (use columns-media)",
+      "looping background-video banners (use story-banner)"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/about"],
+    "reuseCount": 1,
+    "lastUsed": "2026-06-24T10:16:00.000Z"
+  }
+}

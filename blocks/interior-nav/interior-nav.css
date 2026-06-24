@@ -1,0 +1,57 @@
+/*
+ * Interior Nav variant
+ * Sticky horizontal in-page anchor navigation bar.
+ * Matches deluxe.com/about interior-navigation-gen3v1.
+ */
+
+.interior-nav-container .interior-nav-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.interior-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.interior-nav .interior-nav-bar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.interior-nav .interior-nav-bar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 32px;
+  overflow-x: auto;
+}
+
+.interior-nav .interior-nav-bar li {
+  flex: 0 0 auto;
+}
+
+.interior-nav .interior-nav-bar a:any-link {
+  display: inline-block;
+  padding: 18px 0;
+  color: #000f0c;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+}
+
+.interior-nav .interior-nav-bar a:hover {
+  color: #d61120;
+}
+
+.interior-nav .interior-nav-bar a.active {
+  font-weight: 700;
+  border-bottom-color: #d61120;
+}

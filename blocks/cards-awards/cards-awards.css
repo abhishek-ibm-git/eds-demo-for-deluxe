@@ -1,0 +1,69 @@
+/*
+ * Cards Awards variant
+ * Recognition badges: award/recognition image + short caption per card.
+ * Used for the About "Proven Success / Recognized by clients and the industry" section.
+ */
+
+.cards-awards > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.cards-awards > ul > li {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4.3px 17.2px 0 rgb(0 0 0 / 15%);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.cards-awards .cards-awards-card-image {
+  line-height: 0;
+  padding: 24px 16px 8px;
+}
+
+/* Award badge images: contained, not cover */
+.cards-awards > ul > li img {
+  width: auto;
+  max-width: 160px;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+}
+
+.cards-awards .cards-awards-card-body {
+  padding: 8px 16px 24px;
+}
+
+.cards-awards .cards-awards-card-body p {
+  font-size: 14px;
+  line-height: 1.57;
+  color: #6b6b6b;
+  margin: 0;
+}
+
+@media (width >= 600px) {
+  .cards-awards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .cards-awards > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (width >= 1200px) {
+  .cards-awards > ul {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}

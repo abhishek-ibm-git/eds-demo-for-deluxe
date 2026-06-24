@@ -1,0 +1,38 @@
+{
+  "variantName": "hero-about",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-06-24T10:16:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.deluxe.com/about/",
+    "originPage": "Deluxe About Us - full-width side-by-side hero",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "hero",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "side image + eyebrow + heading + description",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "interior/about page hero with side-by-side decorative image",
+      "light hero areas with eyebrow + large heading + description",
+      "content-led intros without video background"
+    ],
+    "notSuitableFor": [
+      "full-bleed dark video hero (use hero-video)",
+      "hero with CTA buttons as primary action"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/about"],
+    "reuseCount": 1,
+    "lastUsed": "2026-06-24T10:16:00.000Z"
+  }
+}

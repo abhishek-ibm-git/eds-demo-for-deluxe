@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "url": "https://www.deluxe.com/about/",
+  "path": "about",
+  "timestamp": "2026-06-24T10:52:09.803Z",
+  "title": "About Deluxe: The Payments and Data Solutions Company",
+  "template": "about-page",
+  "blocks": [
+    "hero-about",
+    "interior-nav",
+    "columns-media",
+    "columns-infographic",
+    "cards-services",
+    "cards-awards",
+    "cards-tiles"
+  ]
+}

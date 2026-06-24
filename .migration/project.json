@@ -9,7 +9,8 @@
       "aemSitePath": "/content/eds-demo-for-deluxe",
       "aemAssetsFolderPath": "/content/dam/eds-demo-for-deluxe",
       "aemSiteName": "eds-demo-for-deluxe",
-      "aemSiteTitle": "eds-demo-for-deluxe"
+      "aemSiteTitle": "eds-demo-for-deluxe",
+      "baseUrl": "https://www.deluxe.com"
     }
   }
 }

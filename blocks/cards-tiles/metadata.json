@@ -1,0 +1,39 @@
+{
+  "variantName": "cards-tiles",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-06-24T10:16:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.deluxe.com/about/",
+    "originPage": "Deluxe About Us - Get to Know Us product-listing card grid",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "navigation",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "linked image + heading link + body paragraph per tile",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "navigation/link tile grids (image + heading link + description)",
+      "section landing 'explore more' card grids",
+      "equal 4-up linked content tiles without CTA buttons"
+    ],
+    "notSuitableFor": [
+      "news/article cards with CTA buttons (use cards-news)",
+      "icon + title feature cards (use cards-services)",
+      "award/recognition badge grids (use cards-awards)"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/about"],
+    "reuseCount": 1,
+    "lastUsed": "2026-06-24T10:16:00.000Z"
+  }
+}

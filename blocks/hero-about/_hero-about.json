@@ -1,30 +1,15 @@
 {
   "definitions": [
     {
-      "title": "Cards Services",
-      "id": "cards-services",
+      "title": "Hero About",
+      "id": "hero-about",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "name": "Cards Services",
-              "filter": "cards-services"
-            }
-          }
-        }
-      }
-    },
-    {
-      "title": "Card",
-      "id": "card",
-      "plugins": {
-        "xwalk": {
-          "page": {
-            "resourceType": "core/franklin/components/block/v1/block/item",
-            "template": {
-              "name": "Card",
-              "model": "card"
+              "name": "Hero About",
+              "model": "hero-about"
             }
           }
         }
@@ -33,7 +18,7 @@
   ],
   "models": [
     {
-      "id": "card",
+      "id": "hero-about",
       "fields": [
         {
           "component": "richtext",
@@ -41,6 +26,13 @@
           "name": "image",
           "label": "Image",
           "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Alt",
+          "value": ""
         },
         {
           "component": "richtext",
@@ -52,12 +44,5 @@
       ]
     }
   ],
-  "filters": [
-    {
-      "id": "cards-services",
-      "components": [
-        "card"
-      ]
-    }
-  ]
+  "filters": []
 }

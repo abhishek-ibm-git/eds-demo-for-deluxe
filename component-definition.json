@@ -147,6 +147,36 @@
           }
         },
         {
+          "title": "Cards Awards",
+          "id": "cards-awards",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Cards Awards",
+                  "filter": "cards-awards"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Card",
+          "id": "card",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Card",
+                  "model": "card"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Cards Insights",
           "id": "cards-insights",
           "plugins": {
@@ -297,6 +327,36 @@
           }
         },
         {
+          "title": "Cards Tiles",
+          "id": "cards-tiles",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Cards Tiles",
+                  "filter": "cards-tiles"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Card",
+          "id": "card",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Card",
+                  "model": "card"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Cards",
           "id": "cards",
           "plugins": {
@@ -387,6 +447,36 @@
           }
         },
         {
+          "title": "Columns Infographic",
+          "id": "columns-infographic",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/columns/v1/columns",
+                "template": {
+                  "columns": "2",
+                  "rows": "1"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Columns Media",
+          "id": "columns-media",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/columns/v1/columns",
+                "template": {
+                  "columns": "2",
+                  "rows": "1"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Columns",
           "id": "columns",
           "plugins": {
@@ -447,6 +537,21 @@
           }
         },
         {
+          "title": "Hero About",
+          "id": "hero-about",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Hero About",
+                  "model": "hero-about"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Hero Video",
           "id": "hero-video",
           "plugins": {
@@ -471,6 +576,36 @@
                 "template": {
                   "name": "Hero",
                   "model": "hero"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Interior Nav",
+          "id": "interior-nav",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Interior Nav",
+                  "filter": "interior-nav"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nav Link",
+          "id": "interior-nav-link",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Nav Link",
+                  "model": "interior-nav-link"
                 }
               }
             }
@@ -714,6 +849,22 @@
                   "model": "tabs-item",
                   "title": "Tab Name",
                   "content_headingType": "h3"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Video Anthem",
+          "id": "video-anthem",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Video Anthem",
+                  "model": "video-anthem",
+                  "filter": "video-anthem"
                 }
               }
             }
