@@ -98,6 +98,18 @@ export default function parse(element, { document }) {
       mediaCell.push(a);
     }
     if (thumb) mediaCell.push(thumb);
+
+    // Capture the collapsible video transcript/description so it can be
+    // re-rendered as a toggle. Wrap it so the decorator can find it.
+    const descBlock = videoBlock.querySelector('.videoDescription, [class*="videoDescription"], [id="videoDescription"]');
+    if (descBlock) {
+      const wrap = document.createElement('div');
+      wrap.className = 'video-transcript';
+      Array.from(descBlock.querySelectorAll('p')).forEach((p) => {
+        if (p.textContent.replace(/\s+/g, ' ').trim()) wrap.appendChild(p);
+      });
+      if (wrap.childNodes.length) mediaCell.push(wrap);
+    }
   }
 
   // Empty-block guard.

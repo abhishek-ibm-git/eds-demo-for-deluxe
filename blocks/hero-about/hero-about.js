@@ -11,24 +11,32 @@ export default function decorate(block) {
   // Identify an authored image column (a cell whose content is an image).
   const imageCol = cols.find((col) => col.querySelector('img'));
 
+  // Determine the decorative image source: an authored image if present,
+  // otherwise the original site's side graphic.
+  let imageSrc = SIDE_IMAGE_URL;
   if (imageCol) {
-    // Unwrap image from any <p> wrapper for proper CSS positioning.
-    const img = imageCol.querySelector('img');
-    const pTag = img.closest('p');
-    if (pTag && pTag.parentElement) {
-      pTag.parentElement.replaceChild(img, pTag);
-    }
-    imageCol.classList.add('hero-about-image');
-  } else {
-    // No authored image: inject the decorative side graphic to preserve the
-    // side-by-side layout of the original hero.
-    const imageDiv = document.createElement('div');
-    imageDiv.className = 'hero-about-image';
+    const authored = imageCol.querySelector('img');
+    if (authored && authored.src) imageSrc = authored.src;
+    // The authored image cell is not used directly — remove it so the content
+    // column is the only authored cell; decorative images are injected below.
+    imageCol.remove();
+  }
+
+  const contentCol = row.querySelector(':scope > div');
+  if (contentCol) contentCol.classList.add('hero-about-content');
+
+  const makeImage = (side) => {
+    const div = document.createElement('div');
+    div.className = `hero-about-image hero-about-image-${side}`;
     const img = document.createElement('img');
-    img.src = SIDE_IMAGE_URL;
+    img.src = imageSrc;
     img.alt = '';
     img.loading = 'eager';
-    imageDiv.append(img);
-    row.insertBefore(imageDiv, row.firstElementChild);
-  }
+    div.append(img);
+    return div;
+  };
+
+  // Decorative graphic on BOTH sides of the content, matching the original hero.
+  row.insertBefore(makeImage('left'), row.firstElementChild);
+  row.append(makeImage('right'));
 }

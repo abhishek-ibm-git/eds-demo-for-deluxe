@@ -197,6 +197,15 @@ var CustomImportScript = (() => {
         mediaCell.push(a);
       }
       if (thumb) mediaCell.push(thumb);
+      const descBlock = videoBlock.querySelector('.videoDescription, [class*="videoDescription"], [id="videoDescription"]');
+      if (descBlock) {
+        const wrap = document.createElement("div");
+        wrap.className = "video-transcript";
+        Array.from(descBlock.querySelectorAll("p")).forEach((p) => {
+          if (p.textContent.replace(/\s+/g, " ").trim()) wrap.appendChild(p);
+        });
+        if (wrap.childNodes.length) mediaCell.push(wrap);
+      }
     }
     if (textCell.length === 0 && mediaCell.length === 0) {
       element.replaceWith(...element.childNodes);
