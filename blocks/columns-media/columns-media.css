@@ -109,6 +109,50 @@
   background-color: rgb(0 0 0 / 80%);
 }
 
+/* Collapsible video transcript / description */
+.columns-media .columns-media-transcript {
+  margin-top: 16px;
+}
+
+.columns-media .columns-media-transcript-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #000f0c;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.columns-media .columns-media-transcript-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000f0c;
+  border-radius: 50%;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.columns-media .columns-media-transcript-toggle:hover {
+  color: #d61120;
+}
+
+.columns-media .columns-media-transcript-panel {
+  margin-top: 12px;
+}
+
+.columns-media .columns-media-transcript-panel p {
+  font-size: 14px;
+  line-height: 20px;
+  color: #333;
+}
+
 @media (width >= 900px) {
   .columns-media > div {
     flex-direction: row;

@@ -26,11 +26,15 @@
   margin: 0 auto;
 }
 
-/* Decorative side image */
+/* Decorative side images (left + right of the content) */
 .hero-about > div > .hero-about-image {
-  order: 0;
   width: 100%;
   line-height: 0;
+}
+
+/* On small screens only show one decorative graphic (the left/top one) */
+.hero-about > div > .hero-about-image-right {
+  display: none;
 }
 
 .hero-about > div > .hero-about-image img,
@@ -40,9 +44,13 @@
   object-fit: contain;
 }
 
+/* Mirror the right-side graphic so the pair frames the content symmetrically */
+.hero-about > div > .hero-about-image-right img {
+  transform: scaleX(-1);
+}
+
 /* Content column */
-.hero-about > div > div:last-child {
-  order: 1;
+.hero-about > div > .hero-about-content {
   width: 100%;
   text-align: center;
 }
@@ -87,18 +95,21 @@
 
   .hero-about > div {
     flex-direction: row;
-    gap: 48px;
+    align-items: center;
+    gap: 32px;
   }
 
-  .hero-about > div > .hero-about-image {
+  /* Both decorative graphics visible, framing the centered content */
+  .hero-about > div > .hero-about-image,
+  .hero-about > div > .hero-about-image-right {
+    display: block;
     flex: 1;
-    order: 0;
+    max-width: 28%;
   }
 
-  .hero-about > div > div:last-child {
-    flex: 1;
-    order: 1;
-    text-align: left;
+  .hero-about > div > .hero-about-content {
+    flex: 2;
+    text-align: center;
   }
 
   .hero-about h1 {

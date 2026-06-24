@@ -50,6 +50,34 @@ function buildEmbed(link) {
   return null;
 }
 
+function buildTranscriptToggle(transcript) {
+  const container = document.createElement('div');
+  container.className = 'columns-media-transcript';
+
+  const toggle = document.createElement('button');
+  toggle.type = 'button';
+  toggle.className = 'columns-media-transcript-toggle';
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.innerHTML = '<span class="columns-media-transcript-icon">+</span> Video Description';
+
+  const panel = document.createElement('div');
+  panel.className = 'columns-media-transcript-panel';
+  panel.hidden = true;
+  // Move the captured transcript paragraphs into the panel.
+  while (transcript.firstChild) panel.append(transcript.firstChild);
+
+  toggle.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    panel.hidden = expanded;
+    const icon = toggle.querySelector('.columns-media-transcript-icon');
+    if (icon) icon.textContent = expanded ? '+' : '–';
+  });
+
+  container.append(toggle, panel);
+  return container;
+}
+
 function decorateVideoColumn(col) {
   const link = col.querySelector('a[href]');
   if (!link) return false;
@@ -57,6 +85,19 @@ function decorateVideoColumn(col) {
   if (!buildEmbed(href)) return false;
 
   const placeholder = col.querySelector('picture');
+
+  // Collect transcript/description paragraphs. The markdown round-trip flattens
+  // the source wrapper, so the transcript is a run of <p> elements in the column
+  // (the video link and poster are the only non-transcript content). Capture
+  // every <p> that isn't the video link itself.
+  const transcript = document.createElement('div');
+  transcript.className = 'video-transcript';
+  col.querySelectorAll('p').forEach((p) => {
+    // Skip paragraphs that only wrap the video link or the poster image.
+    if (p.querySelector('a[href], picture, img')) return;
+    if (p.textContent.replace(/\s+/g, ' ').trim()) transcript.appendChild(p.cloneNode(true));
+  });
+
   col.textContent = '';
   col.classList.add('columns-media-video-col');
 
@@ -80,6 +121,11 @@ function decorateVideoColumn(col) {
   });
 
   col.append(wrapper);
+
+  // Collapsible transcript / video description below the video.
+  if (transcript && transcript.querySelector('p')) {
+    col.append(buildTranscriptToggle(transcript));
+  }
   return true;
 }
 

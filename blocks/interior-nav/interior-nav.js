@@ -30,15 +30,50 @@ export default function decorate(block) {
   block.textContent = '';
   block.append(nav);
 
+  // The source anchor jump-targets (e.g. <div id="overview">) are stripped
+  // during import, so the target IDs do not exist on the page. Re-establish
+  // them by assigning each nav target's ID, in order, to the content sections
+  // that follow this nav's own section.
+  const navSection = block.closest('.section');
+  if (navSection && targets.length) {
+    let sibling = navSection.nextElementSibling;
+    let i = 0;
+    while (sibling && i < targets.length) {
+      if (sibling.classList.contains('section')) {
+        if (!sibling.id) sibling.id = targets[i].id;
+        i += 1;
+      }
+      sibling = sibling.nextElementSibling;
+    }
+  }
+
+  // position:sticky is constrained by its containing block. Inside its own
+  // short EDS section the bar releases as soon as that section scrolls past.
+  // Hoist the block to be a direct child of <main> (in the same flow position)
+  // so the containing block spans the whole page and the bar stays pinned.
+  if (navSection && navSection.parentElement) {
+    navSection.replaceWith(block);
+    block.classList.add('interior-nav-hoisted');
+  }
+
+  // Account for the sticky bar height when scrolling so the section heading
+  // isn't hidden behind the nav.
+  const scrollToId = (id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const navHeight = block.getBoundingClientRect().height;
+    const top = el.getBoundingClientRect().top + window.scrollY - navHeight - 8;
+    window.scrollTo({ top, behavior: 'smooth' });
+  };
+
   // Smooth-scroll on click
   ul.addEventListener('click', (e) => {
     const a = e.target.closest('a');
     if (!a) return;
     const id = a.getAttribute('href').slice(1);
-    const el = document.getElementById(id);
-    if (el) {
+    if (document.getElementById(id)) {
       e.preventDefault();
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      scrollToId(id);
     }
   });
 

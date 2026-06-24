@@ -17,6 +17,14 @@
   border-bottom: 1px solid #e5e5e5;
 }
 
+/* When hoisted to be a direct child of <main>, span the full width and pin to
+   the top across the entire page scroll. */
+.interior-nav.interior-nav-hoisted {
+  display: block;
+  width: 100%;
+  margin: 0;
+}
+
 .interior-nav .interior-nav-bar {
   max-width: 1200px;
   margin: 0 auto;

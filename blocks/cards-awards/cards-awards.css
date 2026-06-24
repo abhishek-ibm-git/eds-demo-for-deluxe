@@ -1,69 +1,100 @@
 /*
- * Cards Awards variant
- * Recognition badges: award/recognition image + short caption per card.
- * Used for the About "Proven Success / Recognized by clients and the industry" section.
+ * Cards Awards variant — "Proven Success" zoom-card wall.
+ * Compact square tiles (image only); hover/focus/tap zooms the tile and reveals
+ * its caption. Mirrors deluxe.com/about zoom-cards-gen3-v1.
  */
 
-.cards-awards > ul {
+.cards-awards-wall {
   list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
+  margin: 0 auto;
+  padding: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
 }
 
-.cards-awards > ul > li {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4.3px 17.2px 0 rgb(0 0 0 / 15%);
-  overflow: hidden;
+/* Compact square tile: badge image only by default */
+.cards-awards-item {
+  position: relative;
+  box-sizing: border-box;
+  width: 128px;
+  height: 128px;
+  background: #fff;
+  box-shadow: 0 0 0 1px #ddd;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
+  cursor: pointer;
+  outline: none;
+  transition: width 0.4s ease, height 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
 }
 
-.cards-awards .cards-awards-card-image {
+.cards-awards-item .cards-awards-image {
   line-height: 0;
-  padding: 24px 16px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
-/* Award badge images: contained, not cover */
-.cards-awards > ul > li img {
+.cards-awards-item .cards-awards-image img {
   width: auto;
-  max-width: 160px;
   height: auto;
+  max-width: calc(100% - 16px);
+  max-height: calc(100% - 16px);
   object-fit: contain;
-  margin: 0 auto;
-  display: block;
+  margin: 8px;
 }
 
-.cards-awards .cards-awards-card-body {
-  padding: 8px 16px 24px;
-}
-
-.cards-awards .cards-awards-card-body p {
+/* Caption hidden until the tile is active */
+.cards-awards-item .cards-awards-caption {
+  display: none;
+  opacity: 0;
+  padding: 0 16px;
+  max-height: 0;
+  overflow: hidden;
+  color: #3f453e;
   font-size: 14px;
-  line-height: 1.57;
-  color: #6b6b6b;
+  line-height: 1.25;
+}
+
+.cards-awards-item .cards-awards-caption p {
   margin: 0;
 }
 
-@media (width >= 600px) {
-  .cards-awards > ul {
-    grid-template-columns: repeat(2, 1fr);
-  }
+/* Zoomed / active tile: grows and reveals the caption */
+.cards-awards-item.is-active {
+  width: 272px;
+  height: 272px;
+  z-index: 2;
+  box-shadow: 0 0 0 1px #ddd, 0 0 16px 0 rgb(0 0 0 / 25%);
 }
 
-@media (width >= 900px) {
-  .cards-awards > ul {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.cards-awards-item.is-active .cards-awards-image img {
+  max-height: 50%;
 }
 
-@media (width >= 1200px) {
-  .cards-awards > ul {
-    grid-template-columns: repeat(5, 1fr);
+.cards-awards-item.is-active .cards-awards-caption {
+  display: block;
+  opacity: 1;
+  max-height: 50%;
+  animation: cards-awards-reveal 1s ease forwards;
+}
+
+@keyframes cards-awards-reveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cards-awards-item,
+  .cards-awards-item.is-active .cards-awards-caption {
+    transition: none;
+    animation: none;
   }
 }
