@@ -25,6 +25,17 @@ export default function decorate(block) {
   const contentCol = row.querySelector(':scope > div');
   if (contentCol) contentCol.classList.add('hero-about-content');
 
+  // --- NEW LOGIC TO MOVE THE TEXT ---
+  const secondRow = row.nextElementSibling;
+  if (secondRow && contentCol) {
+    // Take all children from the second row and move them into contentCol
+    while (secondRow.firstElementChild) {
+      contentCol.append(secondRow.firstElementChild);
+    }
+    // Remove the now-empty second row
+    secondRow.remove();
+  }
+
   const makeImage = (side) => {
     const div = document.createElement('div');
     div.className = `hero-about-image hero-about-image-${side}`;
